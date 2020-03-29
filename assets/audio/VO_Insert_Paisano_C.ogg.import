@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/VO_Insert_Paisano_C.ogg-883d1ac7fe3000696a78488d6cfe654b.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/VO_Insert_Paisano_C.ogg"
+dest_files=[ "res://.import/VO_Insert_Paisano_C.ogg-883d1ac7fe3000696a78488d6cfe654b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

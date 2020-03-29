@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/VO_Insert_Dino_A.ogg-349986367f6d0e65f44ecf2ac4bd6b78.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/VO_Insert_Dino_A.ogg"
+dest_files=[ "res://.import/VO_Insert_Dino_A.ogg-349986367f6d0e65f44ecf2ac4bd6b78.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

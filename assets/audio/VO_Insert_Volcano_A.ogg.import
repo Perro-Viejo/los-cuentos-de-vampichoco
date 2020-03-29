@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/VO_Insert_Volcano_A.ogg-49972cef022b9caf330597a282f0462a.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/VO_Insert_Volcano_A.ogg"
+dest_files=[ "res://.import/VO_Insert_Volcano_A.ogg-49972cef022b9caf330597a282f0462a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -16,21 +16,21 @@ _global_script_class_icons={
 [application]
 
 config/name="los-cuentos-de-vampichoco"
-run/main_scene="res://Level1.tscn"
+run/main_scene="res://src/Levels/Level1.tscn"
 boot_splash/image="res://assets/sprites/world/background.png"
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 config/icon="res://icon.png"
 
 [autoload]
 
-EventsManager="*res://EventsManager.gd"
+EventsManager="*res://src/Managers/EventsManager.gd"
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
-window/size/test_width=1280
-window/size/test_height=720
+window/size/test_width=580
+window/size/test_height=300
 window/stretch/mode="viewport"
 
 [rendering]
@@ -38,4 +38,4 @@ window/stretch/mode="viewport"
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://src/default_env.tres"

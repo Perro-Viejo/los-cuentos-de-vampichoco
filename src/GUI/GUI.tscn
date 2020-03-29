@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/sprites/gui/slot.png" type="Texture" id=1]
-[ext_resource path="res://Card.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/GUI/Card.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/_temp/Dino.jpg" type="Texture" id=3]
 [ext_resource path="res://assets/_temp/Nino.jpg" type="Texture" id=4]
 [ext_resource path="res://assets/_temp/Volcan.jpg" type="Texture" id=5]
-[ext_resource path="res://Slot.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/GUI/Slot.tscn" type="PackedScene" id=6]
 
 [node name="GUI" type="CanvasLayer"]
 
