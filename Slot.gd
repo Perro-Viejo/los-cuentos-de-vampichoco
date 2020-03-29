@@ -22,7 +22,7 @@ func _on_area_exited(other):
 	if not empty:
 		if other.get_parent() == current_card:
 			empty = true
-			$Slot.show()
+#			$Slot.show()
 			EventsManager.emit_signal("card_removed", get_name(), current_card.get_name())
 			print("salio ", current_card.get_name())
 
@@ -30,7 +30,7 @@ func insert_card():
 	EventsManager.emit_signal("card_inserted", get_name(), current_card.get_name())
 	if empty:
 		print("inserte", current_card.get_name())
-		$Slot.hide()
+#		$Slot.hide()
 		current_card.set_position(get_position())
 		current_card.set_z_index(0)
 		empty = false
