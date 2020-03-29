@@ -5,8 +5,9 @@ export (String) var title_text = ""
 
 var dragMouse = false
 var overSlot = false
-var slotPos
+var inserted = false
 var current_slot = null
+var slotPos
 
 func _ready():
 	$Area2D.connect('input_event', self, '_on_input_event')
@@ -24,26 +25,30 @@ func _on_input_event(viewport, event, shape_idx):
 	
 	if event is InputEventMouseButton:
 		if event.is_pressed():
-			if get_z_index() < 3:
-				set_z_index(3)
-				dragMouse = true
+			dragMouse = true
+			if not $Area2D/Card.visible:
+				$Area2D/Card.show()
+			
 		else:
 			dragMouse = false
 			if overSlot:
-				if current_slot.empty:
-					set_position(slotPos)
-					current_slot.empty = false
+				if not inserted:
+					current_slot.insert_card()
+					$Area2D/Card.hide()
+					inserted = true
+				else:
+					set_position(current_slot.get_position())
+					$Area2D/Card.hide()
 
 func _on_area_entered(other):
-	print(other.get_parent().get_name())
 	if "type" in other:
 		if other.type == 'Slot':
 			current_slot = other
 			overSlot = true
-			slotPos = other.get_position()
-
 func _on_area_exited(other):
 	if "type" in other:
 		if other.type == 'Slot':
 			overSlot = false
+		if inserted:
+			inserted = false
 	

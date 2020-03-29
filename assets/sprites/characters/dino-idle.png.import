@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/concepto-02b.png-f14010e38201acbece2dd62f1670691f.stex"
+path="res://.import/dino-idle.png-1215fe72def1f539a58626d0d24a172b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/gui/concepto-02b.png"
-dest_files=[ "res://.import/concepto-02b.png-f14010e38201acbece2dd62f1670691f.stex" ]
+source_file="res://assets/sprites/characters/dino-idle.png"
+dest_files=[ "res://.import/dino-idle.png-1215fe72def1f539a58626d0d24a172b.stex" ]
 
 [params]
 

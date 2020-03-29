@@ -4,7 +4,7 @@
 [ext_resource path="res://Slot.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 126.812, 160.992 )
+extents = Vector2( 74.5568, 106.361 )
 
 [node name="Slot" type="Area2D"]
 script = ExtResource( 2 )

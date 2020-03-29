@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/frame.png-52c7379598c597a31145a217952f1d09.stex"
+path="res://.import/volcano-idle.png-d5bd24eedca65ac8ddb42c14b26d2a64.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/gui/frame.png"
-dest_files=[ "res://.import/frame.png-52c7379598c597a31145a217952f1d09.stex" ]
+source_file="res://assets/sprites/characters/volcano-idle.png"
+dest_files=[ "res://.import/volcano-idle.png-d5bd24eedca65ac8ddb42c14b26d2a64.stex" ]
 
 [params]
 
