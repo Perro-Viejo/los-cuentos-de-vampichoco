@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/_temp/punteada.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/gui/slot.png" type="Texture" id=1]
 [ext_resource path="res://Slot.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 81.4155, 98.4599 )
+extents = Vector2( 126.812, 160.992 )
 
 [node name="Slot" type="Area2D"]
 script = ExtResource( 2 )
