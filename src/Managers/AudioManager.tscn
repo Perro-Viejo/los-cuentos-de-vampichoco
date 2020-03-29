@@ -22,53 +22,53 @@ script = ExtResource( 1 )
 
 [node name="Final" type="Node2D" parent="."]
 
-[node name="Final_01" type="AudioStreamPlayer2D" parent="Final"]
+[node name="Final_01" type="AudioStreamPlayer" parent="Final"]
 stream = ExtResource( 13 )
 
-[node name="Final_02" type="AudioStreamPlayer2D" parent="Final"]
+[node name="Final_02" type="AudioStreamPlayer" parent="Final"]
 stream = ExtResource( 11 )
 
-[node name="Final_03" type="AudioStreamPlayer2D" parent="Final"]
+[node name="Final_03" type="AudioStreamPlayer" parent="Final"]
 stream = ExtResource( 12 )
 
-[node name="Final_04" type="AudioStreamPlayer2D" parent="Final"]
+[node name="Final_04" type="AudioStreamPlayer" parent="Final"]
 stream = ExtResource( 14 )
 
-[node name="Final_05" type="AudioStreamPlayer2D" parent="Final"]
+[node name="Final_05" type="AudioStreamPlayer" parent="Final"]
 stream = ExtResource( 15 )
 
-[node name="Final_06" type="AudioStreamPlayer2D" parent="Final"]
+[node name="Final_06" type="AudioStreamPlayer" parent="Final"]
 stream = ExtResource( 16 )
 
 [node name="Dino" type="Node2D" parent="."]
 
-[node name="SlotA" type="AudioStreamPlayer2D" parent="Dino"]
+[node name="SlotA" type="AudioStreamPlayer" parent="Dino"]
 stream = ExtResource( 6 )
 
-[node name="SlotB" type="AudioStreamPlayer2D" parent="Dino"]
+[node name="SlotB" type="AudioStreamPlayer" parent="Dino"]
 stream = ExtResource( 10 )
 
-[node name="SlotC" type="AudioStreamPlayer2D" parent="Dino"]
+[node name="SlotC" type="AudioStreamPlayer" parent="Dino"]
 stream = ExtResource( 3 )
 
 [node name="Paisano" type="Node2D" parent="."]
 
-[node name="SlotA" type="AudioStreamPlayer2D" parent="Paisano"]
+[node name="SlotA" type="AudioStreamPlayer" parent="Paisano"]
 stream = ExtResource( 2 )
 
-[node name="SlotB" type="AudioStreamPlayer2D" parent="Paisano"]
+[node name="SlotB" type="AudioStreamPlayer" parent="Paisano"]
 stream = ExtResource( 5 )
 
-[node name="SlotC" type="AudioStreamPlayer2D" parent="Paisano"]
+[node name="SlotC" type="AudioStreamPlayer" parent="Paisano"]
 stream = ExtResource( 7 )
 
 [node name="Volcano" type="Node2D" parent="."]
 
-[node name="SlotA" type="AudioStreamPlayer2D" parent="Volcano"]
+[node name="SlotA" type="AudioStreamPlayer" parent="Volcano"]
 stream = ExtResource( 8 )
 
-[node name="SlotB" type="AudioStreamPlayer2D" parent="Volcano"]
+[node name="SlotB" type="AudioStreamPlayer" parent="Volcano"]
 stream = ExtResource( 9 )
 
-[node name="SlotC" type="AudioStreamPlayer2D" parent="Volcano"]
+[node name="SlotC" type="AudioStreamPlayer" parent="Volcano"]
 stream = ExtResource( 4 )
