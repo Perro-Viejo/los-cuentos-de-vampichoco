@@ -20,7 +20,6 @@ func add_card(card_to_add):
 		dragged_card.drag_card()
 		set_indexes_accordingly(dragged_card)
 	else:
-		print("here2")
 		if card_to_add.prev_index > dragged_card.prev_index:
 			dragged_card.drag_mouse=false
 			remove_card()
