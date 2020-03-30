@@ -19,9 +19,8 @@ func remove_card(card):
 		
 func insert_card(card):
 	if !current_card || card == current_card:
-		current_card=card
-		current_card.set_position(get_position())
-		current_card.set_z_index(0)
+		current_card = card
+		card.dropped(get_position())
 		EventsManager.emit_signal("card_inserted", get_name(), current_card.get_name())
 
 func restart():

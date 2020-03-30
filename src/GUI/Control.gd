@@ -12,7 +12,7 @@ func _ready():
 	
 	$Volcano.prev_index = 3
 	$Volcano.z_index = 3
-		
+
 func add_card(card_to_add):
 	if dragged_card == null:
 		card_to_add.prev_index = card_to_add.z_index

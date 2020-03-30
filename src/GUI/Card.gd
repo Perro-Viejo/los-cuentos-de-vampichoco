@@ -15,21 +15,27 @@ func _ready():
 	$Area2D.connect('input_event', self, '_on_input_event')
 	
 	$Area2D/Sprite.texture = card_texture
+	
 	$Area2D/Label.set_text(title_text)
-	pos_initial=get_position()
+	
+	pos_initial = get_position()
 
 func _process(delta):
 	if (drag_mouse):
 		set_position(get_viewport().get_mouse_position())
 
+
 func drag_card():
 	drag_mouse = true
+	
+	$Area2D/Sprite.show()
 	if not $Area2D/Card.visible:
 		$Area2D/Card.show()
 	
 	if current_slot:
 		current_slot.remove_card(self)
-		
+
+
 func drop_card():
 	drag_mouse = false;
 	get_parent().remove_card()
@@ -75,3 +81,7 @@ func restart():
 	slot_pos
 	prev_index=0
 	
+func dropped(target_pos: Vector2) -> void:
+	set_position(target_pos)
+	set_z_index(0)
+	$Area2D/Sprite.hide()

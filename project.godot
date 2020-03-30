@@ -29,9 +29,10 @@ EventsManager="*res://src/Managers/EventsManager.gd"
 
 window/size/width=1920
 window/size/height=1080
-window/size/test_width=580
-window/size/test_height=300
+window/size/test_width=960
+window/size/test_height=540
 window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [rendering]
 
