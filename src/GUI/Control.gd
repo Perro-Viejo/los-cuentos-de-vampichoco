@@ -52,3 +52,22 @@ func set_indexes_accordingly(card):
 			set_index($Paisano, $Volcano.z_index)
 			set_index($Dino, $Volcano.z_index)
 			$Volcano.z_index = 3
+
+func restart():
+	$Dino.prev_index = 1
+	$Dino.z_index = 1
+	
+	$Paisano.prev_index = 2
+	$Paisano.z_index = 2
+	
+	$Volcano.prev_index = 3
+	$Volcano.z_index = 3
+	
+	dragging_card=false
+	dragged_card=null
+	
+	remove_card()
+	for control_child_node in get_children():
+		control_child_node.restart()
+	
+	

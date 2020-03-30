@@ -5,5 +5,4 @@ func _ready():
 	
 	
 func _on_play_requested(source, sound):
-	print(source, sound)
 	get_node(''+source+'/'+sound).play()

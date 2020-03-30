@@ -26,7 +26,6 @@ func _on_card_inserted(Slot, Character):
 		$CharacterC.character_show(Character)
 		EventsManager.emit_signal('play_requested', Character, 'SlotC')
 		
-	
 	if inserted_cards == 3:
 		storyboard_complete()
 func _on_card_removed(Slot, Character):
@@ -46,25 +45,36 @@ func _on_card_removed(Slot, Character):
 	$Final.set_text('')
 
 func storyboard_complete():
-	print("Estan todos los tarjetos")
 	yield(get_tree().create_timer(2.4), "timeout")
 	match slot_order:
 		['Volcano','Dino','Paisano']:
 			$Final.set_text('Final #1')
 			EventsManager.emit_signal('play_requested', "Final", 'Final_01')
+			restart()
 		['Volcano','Paisano','Dino']:
 			$Final.set_text('Final #2')
 			EventsManager.emit_signal('play_requested', "Final", 'Final_02')
+			restart()
 		['Dino','Volcano','Paisano']:
 			$Final.set_text('Final #3')
 			EventsManager.emit_signal('play_requested', "Final", 'Final_03')
+			restart()
 		['Paisano','Volcano','Dino']:
 			$Final.set_text('Final #4')
 			EventsManager.emit_signal('play_requested', "Final", 'Final_04')
+			restart()
 		['Dino','Paisano','Volcano']:
 			$Final.set_text('Final #5')
 			EventsManager.emit_signal('play_requested', "Final", 'Final_05')
+			restart()
 		['Paisano','Dino','Volcano']:
 			$Final.set_text('Final #6')
 			EventsManager.emit_signal('play_requested', "Final", 'Final_06')
 
+func restart():
+	$GUI.get_node("Control").restart()
+	inserted_cards = 0
+	slot_order = ['Empty','Empty','Empty',]
+	$CharacterA.restart()
+	$CharacterB.restart()
+	$CharacterC.restart()

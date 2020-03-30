@@ -23,3 +23,12 @@ func character_hide(current_character):
 	if current_character == "Volcano":
 		$Volcano.hide()
 		$Volcano.stop()
+
+func restart():
+	current_character = ""
+	$Dino.hide()
+	$Dino.stop()
+	$Paisano.hide()
+	$Paisano.stop()
+	$Volcano.hide()
+	$Volcano.stop()

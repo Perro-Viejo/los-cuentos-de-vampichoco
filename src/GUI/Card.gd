@@ -9,11 +9,14 @@ var inserted = false
 var current_slot = null
 var slot_pos
 var prev_index=0
+var pos_initial
+
 func _ready():
 	$Area2D.connect('input_event', self, '_on_input_event')
 	
 	$Area2D/Sprite.texture = card_texture
 	$Area2D/Label.set_text(title_text)
+	pos_initial=get_position()
 
 func _process(delta):
 	if (drag_mouse):
@@ -60,3 +63,15 @@ func _on_input_event(viewport, event, shape_idx):
 			get_parent().add_card(self)
 		elif drag_mouse:
 			drop_card()	
+
+func restart():
+	drag_card()
+	set_position(pos_initial)
+	
+	drag_mouse = false
+	over_slot = false
+	inserted = false
+	current_slot = null
+	slot_pos
+	prev_index=0
+	

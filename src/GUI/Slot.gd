@@ -24,3 +24,5 @@ func insert_card(card):
 		current_card.set_z_index(0)
 		EventsManager.emit_signal("card_inserted", get_name(), current_card.get_name())
 
+func restart():
+	current_card=null;
