@@ -48,33 +48,54 @@ func storyboard_complete():
 	yield(get_tree().create_timer(2.4), "timeout")
 	match slot_order:
 		['Volcano','Dino','Paisano']:
+			yield(play_anims('Erupt', 'Run', 'Walk'), 'completed')
+			
 			$Final.set_text('Final #1')
 			EventsManager.emit_signal('play_requested', "Final", 'Final_01')
 			restart()
 		['Volcano','Paisano','Dino']:
+			yield(play_anims('Erupt', 'Idle', 'Run'), 'completed')
+			
 			$Final.set_text('Final #2')
 			EventsManager.emit_signal('play_requested', "Final", 'Final_02')
 			restart()
 		['Dino','Volcano','Paisano']:
+			yield(play_anims('Sleep', 'Erupt', 'Idle'), 'completed')
+			
 			$Final.set_text('Final #3')
 			EventsManager.emit_signal('play_requested', "Final", 'Final_03')
 			restart()
 		['Paisano','Volcano','Dino']:
+			yield(play_anims('Climb', 'Erupt', 'Run'), 'completed')
+			
 			$Final.set_text('Final #4')
 			EventsManager.emit_signal('play_requested', "Final", 'Final_04')
 			restart()
 		['Dino','Paisano','Volcano']:
+			yield(play_anims('Eat', 'Dance', 'Dance'), 'completed')
+			
 			$Final.set_text('Final #5')
 			EventsManager.emit_signal('play_requested', "Final", 'Final_05')
 			restart()
 		['Paisano','Dino','Volcano']:
+			yield(play_anims('Dance', 'Dance', 'Dance'), 'completed')
+			
 			$Final.set_text('Final #6')
 			EventsManager.emit_signal('play_requested', "Final", 'Final_06')
 
 func restart():
+	yield(get_tree().create_timer(5.0), 'timeout')
+	
 	$GUI.get_node("Control").restart()
 	inserted_cards = 0
 	slot_order = ['Empty','Empty','Empty',]
 	$CharacterA.restart()
 	$CharacterB.restart()
 	$CharacterC.restart()
+
+
+func play_anims(id_a: String, id_b: String, id_c: String) -> void:
+	$CharacterA.play_anim(id_a)
+	$CharacterB.play_anim(id_b)
+	$CharacterC.play_anim(id_c)
+	yield(get_tree().create_timer(10), 'timeout')
