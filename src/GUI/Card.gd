@@ -11,8 +11,6 @@ var slot_pos
 var prev_index=0
 func _ready():
 	$Area2D.connect('input_event', self, '_on_input_event')
-	$Area2D.connect('area_entered', self, '_on_area_entered')
-	$Area2D.connect('area_exited', self, '_on_area_exited')
 	
 	$Area2D/Sprite.texture = card_texture
 	$Area2D/Label.set_text(title_text)
@@ -25,36 +23,40 @@ func drag_card():
 	drag_mouse = true
 	if not $Area2D/Card.visible:
 		$Area2D/Card.show()
+	
+	if current_slot:
+		current_slot.remove_card(self)
 		
 func drop_card():
 	drag_mouse = false;
 	get_parent().remove_card()
-	if over_slot:
+	
+	var overlapping_area = null
+	
+	for oa in $Area2D.get_overlapping_areas():
+		if "Slot" in oa.name:
+			if !oa.current_card || oa.current_card == self:
+				overlapping_area = oa
+				break
+	
+	if overlapping_area:
 		if not inserted:
-			current_slot.insert_card()
+			inserted=true
+			
+		if current_slot != overlapping_area:
+			current_slot = overlapping_area
+			current_slot.insert_card(self)
 			$Area2D/Card.hide()
-			inserted = true
 		else:
-			set_position(current_slot.get_position())
+			current_slot = overlapping_area
+			current_slot.insert_card(self)
 			$Area2D/Card.hide()
+	else:
+		inserted = false
 			
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			get_parent().add_card(self)
-		else:
-			drop_card()
-
-func _on_area_entered(other):
-	if "type" in other:
-		if other.type == 'Slot':
-			current_slot = other
-			over_slot = true
-			
-func _on_area_exited(other):
-	if "type" in other:
-		if other.type == 'Slot':
-			over_slot = false
-		if inserted:
-			inserted = false
-	
+		elif drag_mouse:
+			drop_card()	

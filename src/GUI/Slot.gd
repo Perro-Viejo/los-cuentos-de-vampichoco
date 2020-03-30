@@ -3,32 +3,24 @@ extends Area2D
 export (Texture) var slot_texture = null
 
 var type = "Slot"
-var empty = true
-var current_card
-
+var current_card=null
 
 func _ready():
 	connect('area_entered', self, '_on_area_entered')
-	connect('area_exited', self, '_on_area_exited')
-	
 	$Slot.texture = slot_texture
 
-func _on_area_entered(other):
-	if empty:
-		current_card = other.get_parent()
+func _on_area_exited(card):
+	remove_card(card)
 
-func _on_area_exited(other):
-	if not empty:
-		if other.get_parent() == current_card:
-			empty = true
-#			$Slot.show()
-			EventsManager.emit_signal("card_removed", get_name(), current_card.get_name())
-
-func insert_card():
-	EventsManager.emit_signal("card_inserted", get_name(), current_card.get_name())
-	if empty:
-#		$Slot.hide()
+func remove_card(card):
+	if current_card and current_card == card:
+		EventsManager.emit_signal("card_removed", get_name(), current_card.get_name())
+		current_card=null
+		
+func insert_card(card):
+	if !current_card || card == current_card:
+		current_card=card
 		current_card.set_position(get_position())
 		current_card.set_z_index(0)
-		empty = false
+		EventsManager.emit_signal("card_inserted", get_name(), current_card.get_name())
 
