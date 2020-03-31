@@ -60,12 +60,18 @@ func storyboard_complete():
 			EventsManager.emit_signal('play_requested', "Final", 'Final_02')
 			restart()
 		['Dino','Volcano','Paisano']:
+			$Fire.set_position($CharacterA.position)
+			$Fire.play('Burn')
+			$Fire.show()
 			yield(play_anims('Sleep', 'Erupt', 'Idle'), 'completed')
 			
 			$Final.set_text('Final #3')
 			EventsManager.emit_signal('play_requested', "Final", 'Final_03')
 			restart()
 		['Paisano','Volcano','Dino']:
+			$Fire.set_position($CharacterA.position)
+			$Fire.play('Burn')
+			$Fire.show()
 			yield(play_anims('Climb', 'Erupt', 'Run'), 'completed')
 			
 			$Final.set_text('Final #4')
@@ -92,6 +98,9 @@ func restart():
 	$CharacterA.restart()
 	$CharacterB.restart()
 	$CharacterC.restart()
+	
+	$Fire.stop()
+	$Fire.hide()
 
 
 func play_anims(id_a: String, id_b: String, id_c: String) -> void:
