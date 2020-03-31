@@ -84,3 +84,6 @@ func _on_animation_finished(src: String) -> void:
 				dino.play('Dance')
 			if dino.animation == 'Run':
 				dino.play('Drown')
+		'paisano':
+			if paisano.animation == 'Climb':
+				paisano.play('ClimbLoop')
