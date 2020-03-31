@@ -12,6 +12,9 @@ func _ready():
 	
 	$Volcano.prev_index = 3
 	$Volcano.z_index = 3
+	
+	# Conectar escuchadores de señales
+	EventsManager.connect('storyboard_completed', self, 'toggle_slots', [ false ])
 
 func add_card(card_to_add):
 	if dragged_card == null:
@@ -70,4 +73,10 @@ func restart():
 	for control_child_node in get_children():
 		control_child_node.restart()
 	
-	
+	# Hacer visibles los slots y las cartas
+	toggle_slots()
+
+
+func toggle_slots(show: bool = true) -> void:
+	for control_child_node in get_children():
+		control_child_node.set_visible(show)

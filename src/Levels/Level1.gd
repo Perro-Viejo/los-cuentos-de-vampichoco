@@ -2,14 +2,22 @@ extends Node2D
 
 var inserted_cards = 0
 var slot_order = ['Empty','Empty','Empty',]
+# privates
+var _story: String = ''
+# on ready
+onready var _dflt_pos: Dictionary = {
+	character_a = $CharacterA.position,
+	character_b = $CharacterB.position,
+	character_c = $CharacterC.position
+}
 
 func _ready():
 	EventsManager.emit_signal('play_requested', 'BG', 'Level1')
 	EventsManager.connect('card_inserted', self, '_on_card_inserted')
 	EventsManager.connect('card_removed', self, '_on_card_removed')
-	
+
+
 func _on_card_inserted(Slot, Character):
-	
 	EventsManager.emit_signal('play_requested', Character, 'Show')
 	inserted_cards += 1
 	if Slot == "SlotA":
@@ -27,6 +35,8 @@ func _on_card_inserted(Slot, Character):
 		$CharacterC.character_show(Character)
 	if inserted_cards == 3:
 		storyboard_complete()
+
+
 func _on_card_removed(Slot, Character):
 	inserted_cards -= 1
 	if Slot == "SlotA":
@@ -43,17 +53,19 @@ func _on_card_removed(Slot, Character):
 		$CharacterC.character_hide(Character)
 	$Final.set_text('')
 
+
 func storyboard_complete():
 	yield(get_tree().create_timer(2.4), "timeout")
+	EventsManager.emit_signal('storyboard_completed')
+
 	match slot_order:
 		['Volcano','Dino','Paisano']:
-			EventsManager.emit_signal('play_requested', 'Volcano', 'Explode')
-			EventsManager.emit_signal('play_requested', 'Paisano', 'Walk')
-			EventsManager.emit_signal('play_requested', 'Dino', 'Scream')
-			yield(play_anims('Erupt', 'Run', 'Walk'), 'completed')
+			_story = 'Final_01'
+			$Animations/End01.play('Start')
+			
+			yield($Animations/End01, 'animation_finished')
 			
 			$Final.set_text('Final #1')
-			EventsManager.emit_signal('play_requested', "Final", 'Final_01')
 			restart()
 		['Volcano','Paisano','Dino']:
 			EventsManager.emit_signal('play_requested', 'Volcano', 'Explode')
@@ -124,3 +136,11 @@ func play_anims(id_a: String, id_b: String, id_c: String) -> void:
 	$CharacterB.play_anim(id_b)
 	$CharacterC.play_anim(id_c)
 	yield(get_tree().create_timer(10), 'timeout')
+
+
+func play_vo() -> void:
+	EventsManager.emit_signal('play_requested', "Final", _story)
+
+
+func pause_vo() -> void:
+	EventsManager.emit_signal('pause_requested', "Final", _story)

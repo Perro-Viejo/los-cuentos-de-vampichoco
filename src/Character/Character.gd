@@ -61,16 +61,46 @@ func play_anim(id) -> void:
 	match _current_character:
 		"Dino":
 			node = $Dino
+			
 			if id == 'Eat':
 				dino.position.y = dino_dflt_y - 32
 			else:
 				dino.position.y = dino_dflt_y
+				
+			# Reproducir SFXs
+			match id:
+				'Run':
+					EventsManager.emit_signal('play_requested', 'Dino', 'Scream')
+				'Drown':
+					EventsManager.emit_signal('play_requested', 'Dino', id)
+		"Paisano":
+			node = $Paisano
+			
+			# Reproducir SFXs
+			if id == 'Walk':
+				EventsManager.emit_signal('play_requested', 'Paisano', 'Walk')
+		"Volcano":
+			node = $Volcano
+			
+			# Reproducir SFXs
+			if id == 'Erupt':
+				EventsManager.emit_signal('play_requested', 'Volcano', 'Explode')
+	
+	node.play(id)
+
+
+func stop_anim() -> void:
+	var node: AnimatedSprite
+	
+	match _current_character:
+		"Dino":
+			node = $Dino
 		"Paisano":
 			node = $Paisano
 		"Volcano":
 			node = $Volcano
 	
-	node.play(id)
+	node.stop()
 
 
 func register_listener(node: AnimatedSprite, id: String) -> void:
@@ -90,9 +120,6 @@ func _on_animation_finished(src: String) -> void:
 
 				dino.play('Dance')
 				EventsManager.emit_signal('play_requested', 'Dino', 'Dance')
-			if dino.animation == 'Run':
-				dino.play('Drown')
-				EventsManager.emit_signal('play_requested', 'Dino', 'Drown')
 		'paisano':
 			if paisano.animation == 'Climb':
 				paisano.play('ClimbLoop')
@@ -106,3 +133,7 @@ func _on_frame_changed(src: String) -> void:
 			if $Dino.animation == "Walk":
 				if $Dino.get_frame() == 0 or $Dino.get_frame() == 3:
 					EventsManager.emit_signal('play_requested', 'Dino', 'FS')
+		'paisano':
+			pass
+		'volcano':
+			pass
