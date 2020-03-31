@@ -11,5 +11,5 @@ dest_files=[ "res://.import/SFX_Dino_Sleep.ogg-6e3402300ef0fbb5b2bbbf66cc76ece3.
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0

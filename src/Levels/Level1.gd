@@ -65,7 +65,7 @@ func storyboard_complete():
 			EventsManager.emit_signal('play_requested', "Final", 'Final_02')
 			restart()
 		['Dino','Volcano','Paisano']:
-			EventsManager.emit_signal('play_requested', 'Paisano', 'Burn')
+#			EventsManager.emit_signal('play_requested', 'Paisano', 'Burn')
 			EventsManager.emit_signal('play_requested', 'Volcano', 'Explode')
 			EventsManager.emit_signal('play_requested', 'Dino', 'Sleep')
 			$Fire.set_position($CharacterA.position)
@@ -108,6 +108,7 @@ func restart():
 	yield(get_tree().create_timer(5.0), 'timeout')
 	
 	$GUI.get_node("Control").restart()
+	EventsManager.emit_signal('play_requested', "Card", 'Reset')
 	inserted_cards = 0
 	slot_order = ['Empty','Empty','Empty',]
 	$CharacterA.restart()

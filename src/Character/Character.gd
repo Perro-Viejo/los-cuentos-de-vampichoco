@@ -32,8 +32,10 @@ func character_hide(current_character):
 	if current_character == "Dino":
 		$Dino.hide()
 		$Dino.stop()
-		if volcano.animation == 'Dance':
+		if dino.animation == 'Dance':
 			EventsManager.emit_signal('stop_requested', 'Dino', 'Dance')
+		if dino.animation == 'Sleep':
+			EventsManager.emit_signal('stop_requested', 'Dino', 'Sleep')
 	if current_character == "Paisano":
 		$Paisano.hide()
 		$Paisano.stop()
@@ -74,6 +76,7 @@ func play_anim(id) -> void:
 func register_listener(node: AnimatedSprite, id: String) -> void:
 # warning-ignore:return_value_discarded
 	node.connect('animation_finished', self, '_on_animation_finished', [id])
+	node.connect('frame_changed', self, '_on_frame_changed', [id])
 
 
 func _on_animation_finished(src: String) -> void:
@@ -93,3 +96,13 @@ func _on_animation_finished(src: String) -> void:
 		'paisano':
 			if paisano.animation == 'Climb':
 				paisano.play('ClimbLoop')
+				
+func _on_frame_changed(src: String) -> void:
+	match src:
+		'dino':
+			if $Dino.animation == "Run":
+				if $Dino.get_frame() == 1 or $Dino.get_frame() == 5:
+					EventsManager.emit_signal('play_requested', 'Dino', 'FS')
+			if $Dino.animation == "Walk":
+				if $Dino.get_frame() == 0 or $Dino.get_frame() == 3:
+					EventsManager.emit_signal('play_requested', 'Dino', 'FS')

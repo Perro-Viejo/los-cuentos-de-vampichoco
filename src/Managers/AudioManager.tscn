@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/Managers/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/audio/SFX_Paisano_Show.ogg" type="AudioStream" id=2]
@@ -25,6 +25,17 @@
 [ext_resource path="res://assets/audio/SFX_Dino_Eat.ogg" type="AudioStream" id=23]
 [ext_resource path="res://assets/audio/SFX_Dino_Drown.ogg" type="AudioStream" id=24]
 [ext_resource path="res://assets/audio/SFX_Dino_Dance.ogg" type="AudioStream" id=25]
+[ext_resource path="res://assets/audio/SFX_Card_Reset.ogg" type="AudioStream" id=26]
+[ext_resource path="res://assets/audio/SFX_Card_Grab_03.ogg" type="AudioStream" id=27]
+[ext_resource path="res://assets/audio/SFX_Card_Drop_02.ogg" type="AudioStream" id=28]
+[ext_resource path="res://assets/audio/SFX_Card_Grab_02.ogg" type="AudioStream" id=29]
+[ext_resource path="res://assets/audio/SFX_Card_Insert_02.ogg" type="AudioStream" id=30]
+[ext_resource path="res://assets/audio/SFX_Card_Insert_03.ogg" type="AudioStream" id=31]
+[ext_resource path="res://src/Audio/RandomTool.gd" type="Script" id=32]
+[ext_resource path="res://assets/audio/SFX_Dino_Scream_02.ogg" type="AudioStream" id=33]
+[ext_resource path="res://assets/audio/SFX_Dino_Scream_03.ogg" type="AudioStream" id=34]
+[ext_resource path="res://assets/audio/SFX_Dino_FS_02.ogg" type="AudioStream" id=35]
+[ext_resource path="res://assets/audio/SFX_Dino_FS_01.ogg" type="AudioStream" id=36]
 
 [node name="AudioManager" type="Node2D"]
 script = ExtResource( 1 )
@@ -63,11 +74,31 @@ stream = ExtResource( 24 )
 [node name="Eat" type="AudioStreamPlayer" parent="Dino"]
 stream = ExtResource( 23 )
 
-[node name="Scream" type="AudioStreamPlayer" parent="Dino"]
-stream = ExtResource( 22 )
-
 [node name="Sleep" type="AudioStreamPlayer" parent="Dino"]
 stream = ExtResource( 21 )
+
+[node name="Scream" type="Node2D" parent="Dino"]
+script = ExtResource( 32 )
+
+[node name="Scream" type="AudioStreamPlayer" parent="Dino/Scream"]
+stream = ExtResource( 22 )
+
+[node name="Scream2" type="AudioStreamPlayer" parent="Dino/Scream"]
+stream = ExtResource( 33 )
+
+[node name="Scream3" type="AudioStreamPlayer" parent="Dino/Scream"]
+stream = ExtResource( 34 )
+
+[node name="FS" type="Node2D" parent="Dino"]
+script = ExtResource( 32 )
+
+[node name="FS" type="AudioStreamPlayer" parent="Dino/FS"]
+stream = ExtResource( 36 )
+volume_db = -3.0
+
+[node name="FS2" type="AudioStreamPlayer" parent="Dino/FS"]
+stream = ExtResource( 35 )
+volume_db = -3.0
 
 [node name="Paisano" type="Node2D" parent="."]
 
@@ -103,14 +134,41 @@ stream = ExtResource( 17 )
 
 [node name="Card" type="Node2D" parent="."]
 
-[node name="Drop" type="AudioStreamPlayer" parent="Card"]
+[node name="Drop" type="Node2D" parent="Card"]
+script = ExtResource( 32 )
+
+[node name="Drop_02" type="AudioStreamPlayer" parent="Card/Drop"]
+stream = ExtResource( 28 )
+
+[node name="Drop_01" type="AudioStreamPlayer" parent="Card/Drop"]
 stream = ExtResource( 8 )
 
-[node name="Insert" type="AudioStreamPlayer" parent="Card"]
+[node name="Reset" type="AudioStreamPlayer" parent="Card"]
+stream = ExtResource( 26 )
+
+[node name="Grab" type="Node2D" parent="Card"]
+script = ExtResource( 32 )
+
+[node name="Grab" type="AudioStreamPlayer" parent="Card/Grab"]
+stream = ExtResource( 6 )
+
+[node name="Grab2" type="AudioStreamPlayer" parent="Card/Grab"]
+stream = ExtResource( 29 )
+
+[node name="Grab3" type="AudioStreamPlayer" parent="Card/Grab"]
+stream = ExtResource( 27 )
+
+[node name="Insert" type="Node2D" parent="Card"]
+script = ExtResource( 32 )
+
+[node name="Insert" type="AudioStreamPlayer" parent="Card/Insert"]
 stream = ExtResource( 7 )
 
-[node name="Grab" type="AudioStreamPlayer" parent="Card"]
-stream = ExtResource( 6 )
+[node name="Insert2" type="AudioStreamPlayer" parent="Card/Insert"]
+stream = ExtResource( 30 )
+
+[node name="Insert3" type="AudioStreamPlayer" parent="Card/Insert"]
+stream = ExtResource( 31 )
 
 [node name="UI" type="Node2D" parent="."]
 
