@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SFX_Dino_Sleep.ogg-6e3402300ef0fbb5b2bbbf66cc76ece3.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/SFX_Dino_Sleep.ogg"
+dest_files=[ "res://.import/SFX_Dino_Sleep.ogg-6e3402300ef0fbb5b2bbbf66cc76ece3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

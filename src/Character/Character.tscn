@@ -376,88 +376,88 @@ region = Rect2( 354, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=66]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 11 )
 region = Rect2( 0, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=67]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 11 )
 region = Rect2( 118, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=68]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 11 )
 region = Rect2( 236, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=69]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 11 )
 region = Rect2( 354, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=70]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 11 )
 region = Rect2( 472, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=71]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 11 )
 region = Rect2( 590, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=72]
 flags = 4
 atlas = ExtResource( 15 )
-region = Rect2( 708, 0, 118, 118 )
+region = Rect2( 1062, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=73]
 flags = 4
 atlas = ExtResource( 15 )
-region = Rect2( 826, 0, 118, 118 )
+region = Rect2( 1180, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=74]
 flags = 4
 atlas = ExtResource( 15 )
-region = Rect2( 944, 0, 118, 118 )
+region = Rect2( 0, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=75]
 flags = 4
 atlas = ExtResource( 15 )
-region = Rect2( 1062, 0, 118, 118 )
+region = Rect2( 118, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=76]
 flags = 4
 atlas = ExtResource( 15 )
-region = Rect2( 1180, 0, 118, 118 )
+region = Rect2( 236, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=77]
 flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 0, 0, 118, 118 )
+atlas = ExtResource( 15 )
+region = Rect2( 354, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=78]
 flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 118, 0, 118, 118 )
+atlas = ExtResource( 15 )
+region = Rect2( 472, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=79]
 flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 236, 0, 118, 118 )
+atlas = ExtResource( 15 )
+region = Rect2( 590, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=80]
 flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 354, 0, 118, 118 )
+atlas = ExtResource( 15 )
+region = Rect2( 708, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=81]
 flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 472, 0, 118, 118 )
+atlas = ExtResource( 15 )
+region = Rect2( 826, 0, 118, 118 )
 
 [sub_resource type="AtlasTexture" id=82]
 flags = 4
-atlas = ExtResource( 11 )
-region = Rect2( 590, 0, 118, 118 )
+atlas = ExtResource( 15 )
+region = Rect2( 944, 0, 118, 118 )
 
 [sub_resource type="SpriteFrames" id=83]
 animations = [ {
@@ -471,19 +471,19 @@ animations = [ {
 "name": "Idle",
 "speed": 6.0
 }, {
-"frames": [ SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ) ],
-"loop": false,
-"name": "Climb",
+"frames": [ SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ) ],
+"loop": true,
+"name": "Dance",
 "speed": 6.0
 }, {
-"frames": [ SubResource( 75 ), SubResource( 76 ) ],
+"frames": [ SubResource( 72 ), SubResource( 73 ) ],
 "loop": true,
 "name": "ClimbLoop",
 "speed": 6.0
 }, {
-"frames": [ SubResource( 77 ), SubResource( 78 ), SubResource( 79 ), SubResource( 80 ), SubResource( 81 ), SubResource( 82 ) ],
-"loop": true,
-"name": "Dance",
+"frames": [ SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ), SubResource( 79 ), SubResource( 80 ), SubResource( 81 ), SubResource( 82 ) ],
+"loop": false,
+"name": "Climb",
 "speed": 6.0
 } ]
 
@@ -509,73 +509,73 @@ region = Rect2( 819, 0, 273, 274 )
 
 [sub_resource type="AtlasTexture" id=88]
 flags = 4
-atlas = ExtResource( 10 )
+atlas = ExtResource( 12 )
 region = Rect2( 0, 0, 400, 400 )
 
 [sub_resource type="AtlasTexture" id=89]
 flags = 4
-atlas = ExtResource( 10 )
+atlas = ExtResource( 12 )
 region = Rect2( 400, 0, 400, 400 )
 
 [sub_resource type="AtlasTexture" id=90]
 flags = 4
-atlas = ExtResource( 10 )
+atlas = ExtResource( 12 )
 region = Rect2( 800, 0, 400, 400 )
 
 [sub_resource type="AtlasTexture" id=91]
 flags = 4
-atlas = ExtResource( 10 )
+atlas = ExtResource( 12 )
 region = Rect2( 1200, 0, 400, 400 )
 
 [sub_resource type="AtlasTexture" id=92]
 flags = 4
-atlas = ExtResource( 10 )
+atlas = ExtResource( 12 )
 region = Rect2( 1600, 0, 400, 400 )
 
 [sub_resource type="AtlasTexture" id=93]
 flags = 4
-atlas = ExtResource( 10 )
-region = Rect2( 1600, 0, 400, 400 )
+atlas = ExtResource( 12 )
+region = Rect2( 2000, 0, 400, 400 )
 
 [sub_resource type="AtlasTexture" id=94]
 flags = 4
 atlas = ExtResource( 10 )
-region = Rect2( 2000, 0, 400, 400 )
+region = Rect2( 0, 0, 400, 400 )
 
 [sub_resource type="AtlasTexture" id=95]
 flags = 4
 atlas = ExtResource( 10 )
-region = Rect2( 2400, 0, 400, 400 )
+region = Rect2( 400, 0, 400, 400 )
 
 [sub_resource type="AtlasTexture" id=96]
 flags = 4
-atlas = ExtResource( 12 )
-region = Rect2( 0, 0, 400, 400 )
+atlas = ExtResource( 10 )
+region = Rect2( 800, 0, 400, 400 )
 
 [sub_resource type="AtlasTexture" id=97]
 flags = 4
-atlas = ExtResource( 12 )
-region = Rect2( 400, 0, 400, 400 )
+atlas = ExtResource( 10 )
+region = Rect2( 1200, 0, 400, 400 )
 
 [sub_resource type="AtlasTexture" id=98]
 flags = 4
-atlas = ExtResource( 12 )
-region = Rect2( 800, 0, 400, 400 )
+atlas = ExtResource( 10 )
+region = Rect2( 1600, 0, 400, 400 )
 
 [sub_resource type="AtlasTexture" id=99]
 flags = 4
-atlas = ExtResource( 12 )
-region = Rect2( 1200, 0, 400, 400 )
+atlas = ExtResource( 10 )
+region = Rect2( 1600, 0, 400, 400 )
 
 [sub_resource type="AtlasTexture" id=100]
 flags = 4
-atlas = ExtResource( 12 )
-region = Rect2( 1600, 0, 400, 400 )
+atlas = ExtResource( 10 )
+region = Rect2( 2000, 0, 400, 400 )
 
 [sub_resource type="AtlasTexture" id=101]
 flags = 4
-atlas = ExtResource( 12 )
-region = Rect2( 2000, 0, 400, 400 )
+atlas = ExtResource( 10 )
+region = Rect2( 2400, 0, 400, 400 )
 
 [sub_resource type="SpriteFrames" id=102]
 animations = [ {
@@ -584,19 +584,19 @@ animations = [ {
 "name": "Idle",
 "speed": 6.0
 }, {
-"frames": [ SubResource( 88 ), SubResource( 89 ), SubResource( 90 ), SubResource( 91 ), SubResource( 92 ) ],
+"frames": [ SubResource( 88 ), SubResource( 88 ), SubResource( 89 ), SubResource( 90 ), SubResource( 90 ), SubResource( 89 ), SubResource( 91 ), SubResource( 91 ), SubResource( 89 ), SubResource( 92 ), SubResource( 92 ), SubResource( 89 ), SubResource( 93 ), SubResource( 93 ), SubResource( 93 ), SubResource( 93 ), SubResource( 89 ) ],
+"loop": true,
+"name": "Dance",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 94 ), SubResource( 95 ), SubResource( 96 ), SubResource( 97 ), SubResource( 98 ) ],
 "loop": false,
 "name": "Erupt",
 "speed": 6.0
 }, {
-"frames": [ SubResource( 93 ), SubResource( 94 ), SubResource( 95 ) ],
+"frames": [ SubResource( 99 ), SubResource( 100 ), SubResource( 101 ) ],
 "loop": true,
 "name": "EruptLoop",
-"speed": 6.0
-}, {
-"frames": [ SubResource( 96 ), SubResource( 96 ), SubResource( 97 ), SubResource( 98 ), SubResource( 98 ), SubResource( 97 ), SubResource( 99 ), SubResource( 99 ), SubResource( 97 ), SubResource( 100 ), SubResource( 100 ), SubResource( 97 ), SubResource( 101 ), SubResource( 101 ), SubResource( 101 ), SubResource( 101 ), SubResource( 97 ) ],
-"loop": true,
-"name": "Dance",
 "speed": 6.0
 } ]
 
@@ -612,7 +612,6 @@ animation = "Idle"
 visible = false
 position = Vector2( 0, -12.3319 )
 frames = SubResource( 83 )
-animation = "Fire"
 
 [node name="Volcano" type="AnimatedSprite" parent="."]
 visible = false

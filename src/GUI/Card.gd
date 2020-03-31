@@ -26,6 +26,7 @@ func _process(delta):
 
 
 func drag_card():
+	EventsManager.emit_signal('play_requested', 'Card', 'Grab')
 	drag_mouse = true
 	
 	$Area2D/Sprite.show()
@@ -55,12 +56,15 @@ func drop_card():
 		if current_slot != overlapping_area:
 			current_slot = overlapping_area
 			current_slot.insert_card(self)
+			EventsManager.emit_signal('play_requested', 'Card', 'Insert')
 			$Area2D/Card.hide()
 		else:
 			current_slot = overlapping_area
 			current_slot.insert_card(self)
+			EventsManager.emit_signal('play_requested', 'Card', 'Insert')
 			$Area2D/Card.hide()
 	else:
+		EventsManager.emit_signal('play_requested', 'Card', 'Drop')
 		inserted = false
 			
 func _on_input_event(viewport, event, shape_idx):

@@ -6,4 +6,5 @@ signal card_removed(Slot, Card)
 
 #----------AudioManager------------
 signal play_requested(source, sound)
+signal stop_requested(source, sound)
 

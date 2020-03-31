@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SFX_Card_Grab_02.ogg-2a8a1723753abe18fc9c3129d5ebd62f.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/SFX_Card_Grab_02.ogg"
+dest_files=[ "res://.import/SFX_Card_Grab_02.ogg-2a8a1723753abe18fc9c3129d5ebd62f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

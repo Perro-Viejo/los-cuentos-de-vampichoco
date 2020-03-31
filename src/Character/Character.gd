@@ -32,12 +32,16 @@ func character_hide(current_character):
 	if current_character == "Dino":
 		$Dino.hide()
 		$Dino.stop()
+		if volcano.animation == 'Dance':
+			EventsManager.emit_signal('stop_requested', 'Dino', 'Dance')
 	if current_character == "Paisano":
 		$Paisano.hide()
 		$Paisano.stop()
 	if current_character == "Volcano":
 		$Volcano.hide()
 		$Volcano.stop()
+		if volcano.animation == 'Dance':
+			EventsManager.emit_signal('stop_requested', 'Volcano', 'Dance')
 
 func restart():
 	_current_character = ""
@@ -82,8 +86,10 @@ func _on_animation_finished(src: String) -> void:
 				dino.position.y = dino_dflt_y
 
 				dino.play('Dance')
+				EventsManager.emit_signal('play_requested', 'Dino', 'Dance')
 			if dino.animation == 'Run':
 				dino.play('Drown')
+				EventsManager.emit_signal('play_requested', 'Dino', 'Drown')
 		'paisano':
 			if paisano.animation == 'Climb':
 				paisano.play('ClimbLoop')

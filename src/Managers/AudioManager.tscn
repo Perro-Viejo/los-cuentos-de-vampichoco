@@ -1,21 +1,30 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/Managers/AudioManager.gd" type="Script" id=1]
-[ext_resource path="res://assets/audio/VO_Insert_Paisano_A.ogg" type="AudioStream" id=2]
-[ext_resource path="res://assets/audio/VO_Insert_Dino_C.ogg" type="AudioStream" id=3]
-[ext_resource path="res://assets/audio/VO_Insert_Volcano_C.ogg" type="AudioStream" id=4]
-[ext_resource path="res://assets/audio/VO_Insert_Paisano_B.ogg" type="AudioStream" id=5]
-[ext_resource path="res://assets/audio/VO_Insert_Dino_A.ogg" type="AudioStream" id=6]
-[ext_resource path="res://assets/audio/VO_Insert_Paisano_C.ogg" type="AudioStream" id=7]
-[ext_resource path="res://assets/audio/VO_Insert_Volcano_A.ogg" type="AudioStream" id=8]
-[ext_resource path="res://assets/audio/VO_Insert_Volcano_B.ogg" type="AudioStream" id=9]
-[ext_resource path="res://assets/audio/VO_Insert_Dino_B.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/audio/SFX_Paisano_Show.ogg" type="AudioStream" id=2]
+[ext_resource path="res://assets/audio/SFX_Dino_Show.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/SFX_Volcano_Show.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/SFX_Button.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/SFX_Card_Grab_01.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/SFX_Card_Insert_01.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/SFX_Card_Drop_01.ogg" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/SFX_Volcano_Sing.ogg" type="AudioStream" id=9]
+[ext_resource path="res://assets/audio/SFX_Volcano_Explode.ogg" type="AudioStream" id=10]
 [ext_resource path="res://assets/audio/VO_Final_02.ogg" type="AudioStream" id=11]
 [ext_resource path="res://assets/audio/VO_Final_03.ogg" type="AudioStream" id=12]
 [ext_resource path="res://assets/audio/VO_Final_01.ogg" type="AudioStream" id=13]
 [ext_resource path="res://assets/audio/VO_Final_04.ogg" type="AudioStream" id=14]
 [ext_resource path="res://assets/audio/VO_Final_05.ogg" type="AudioStream" id=15]
 [ext_resource path="res://assets/audio/VO_Final_06.ogg" type="AudioStream" id=16]
+[ext_resource path="res://assets/audio/BG_Level1.ogg" type="AudioStream" id=17]
+[ext_resource path="res://assets/audio/SFX_Paisano_Walk.ogg" type="AudioStream" id=18]
+[ext_resource path="res://assets/audio/SFX_Paisano_Burn.ogg" type="AudioStream" id=19]
+[ext_resource path="res://assets/audio/SFX_Paisano_Climb.ogg" type="AudioStream" id=20]
+[ext_resource path="res://assets/audio/SFX_Dino_Sleep.ogg" type="AudioStream" id=21]
+[ext_resource path="res://assets/audio/SFX_Dino_Scream_01.ogg" type="AudioStream" id=22]
+[ext_resource path="res://assets/audio/SFX_Dino_Eat.ogg" type="AudioStream" id=23]
+[ext_resource path="res://assets/audio/SFX_Dino_Drown.ogg" type="AudioStream" id=24]
+[ext_resource path="res://assets/audio/SFX_Dino_Dance.ogg" type="AudioStream" id=25]
 
 [node name="AudioManager" type="Node2D"]
 script = ExtResource( 1 )
@@ -42,33 +51,68 @@ stream = ExtResource( 16 )
 
 [node name="Dino" type="Node2D" parent="."]
 
-[node name="SlotA" type="AudioStreamPlayer" parent="Dino"]
-stream = ExtResource( 6 )
-
-[node name="SlotB" type="AudioStreamPlayer" parent="Dino"]
-stream = ExtResource( 10 )
-
-[node name="SlotC" type="AudioStreamPlayer" parent="Dino"]
+[node name="Show" type="AudioStreamPlayer" parent="Dino"]
 stream = ExtResource( 3 )
+
+[node name="Dance" type="AudioStreamPlayer" parent="Dino"]
+stream = ExtResource( 25 )
+
+[node name="Drown" type="AudioStreamPlayer" parent="Dino"]
+stream = ExtResource( 24 )
+
+[node name="Eat" type="AudioStreamPlayer" parent="Dino"]
+stream = ExtResource( 23 )
+
+[node name="Scream" type="AudioStreamPlayer" parent="Dino"]
+stream = ExtResource( 22 )
+
+[node name="Sleep" type="AudioStreamPlayer" parent="Dino"]
+stream = ExtResource( 21 )
 
 [node name="Paisano" type="Node2D" parent="."]
 
-[node name="SlotA" type="AudioStreamPlayer" parent="Paisano"]
+[node name="Show" type="AudioStreamPlayer" parent="Paisano"]
 stream = ExtResource( 2 )
+volume_db = -3.0
 
-[node name="SlotB" type="AudioStreamPlayer" parent="Paisano"]
-stream = ExtResource( 5 )
+[node name="Burn" type="AudioStreamPlayer" parent="Paisano"]
+stream = ExtResource( 19 )
 
-[node name="SlotC" type="AudioStreamPlayer" parent="Paisano"]
-stream = ExtResource( 7 )
+[node name="Climb" type="AudioStreamPlayer" parent="Paisano"]
+stream = ExtResource( 20 )
+
+[node name="Walk" type="AudioStreamPlayer" parent="Paisano"]
+stream = ExtResource( 18 )
+volume_db = -3.0
 
 [node name="Volcano" type="Node2D" parent="."]
 
-[node name="SlotA" type="AudioStreamPlayer" parent="Volcano"]
-stream = ExtResource( 8 )
+[node name="Show" type="AudioStreamPlayer" parent="Volcano"]
+stream = ExtResource( 4 )
 
-[node name="SlotB" type="AudioStreamPlayer" parent="Volcano"]
+[node name="Explode" type="AudioStreamPlayer" parent="Volcano"]
+stream = ExtResource( 10 )
+
+[node name="Dance" type="AudioStreamPlayer" parent="Volcano"]
 stream = ExtResource( 9 )
 
-[node name="SlotC" type="AudioStreamPlayer" parent="Volcano"]
-stream = ExtResource( 4 )
+[node name="BG" type="Node2D" parent="."]
+
+[node name="Level1" type="AudioStreamPlayer" parent="BG"]
+stream = ExtResource( 17 )
+
+[node name="Card" type="Node2D" parent="."]
+
+[node name="Drop" type="AudioStreamPlayer" parent="Card"]
+stream = ExtResource( 8 )
+
+[node name="Insert" type="AudioStreamPlayer" parent="Card"]
+stream = ExtResource( 7 )
+
+[node name="Grab" type="AudioStreamPlayer" parent="Card"]
+stream = ExtResource( 6 )
+
+[node name="UI" type="Node2D" parent="."]
+
+[node name="Button" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource( 5 )
