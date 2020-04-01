@@ -16,6 +16,7 @@ func _ready() -> void:
 
 func character_show(current_character):
 	_current_character = current_character
+	EventsManager.emit_signal('play_requested', current_character , 'Show')
 	
 	if current_character == "Dino":
 		$Dino.show()

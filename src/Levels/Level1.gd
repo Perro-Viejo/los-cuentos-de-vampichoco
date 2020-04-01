@@ -21,7 +21,6 @@ func _ready():
 
 
 func _on_card_inserted(Slot, Character):
-	EventsManager.emit_signal('play_requested', Character, 'Show')
 	inserted_cards += 1
 	if Slot == "SlotA":
 		slot_order.remove(0)

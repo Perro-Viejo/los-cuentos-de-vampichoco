@@ -1,5 +1,6 @@
 extends Node2D
 
+
 var index_sound = -1
 var select_sound
 var canplay
@@ -29,6 +30,7 @@ func _ready():
 			'pitch': sfx.get_pitch_scale(),
 			'volume': sfx.get_volume_db()
 		}
+
 
 func play():
 	randomize()

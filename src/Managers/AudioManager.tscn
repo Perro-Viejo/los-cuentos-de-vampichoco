@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://src/Managers/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/audio/SFX_Paisano_Show.ogg" type="AudioStream" id=2]
@@ -38,6 +38,8 @@
 [ext_resource path="res://assets/audio/SFX_Dino_FS_01.ogg" type="AudioStream" id=36]
 [ext_resource path="res://assets/audio/SFX_Boat_Leaves.ogg" type="AudioStream" id=37]
 [ext_resource path="res://assets/audio/SFX_Boat_Board.ogg" type="AudioStream" id=38]
+[ext_resource path="res://assets/audio/VO_Start.ogg" type="AudioStream" id=39]
+[ext_resource path="res://assets/audio/VO_End.ogg" type="AudioStream" id=34]
 
 [node name="AudioManager" type="Node2D"]
 script = ExtResource( 1 )
@@ -116,7 +118,7 @@ stream = ExtResource( 20 )
 
 [node name="Walk" type="AudioStreamPlayer" parent="Paisano"]
 stream = ExtResource( 18 )
-volume_db = -3.0
+volume_db = -4.0
 
 [node name="Volcano" type="Node2D" parent="."]
 
@@ -184,3 +186,11 @@ stream = ExtResource( 38 )
 
 [node name="Leave" type="AudioStreamPlayer2D" parent="Boat"]
 stream = ExtResource( 37 )
+
+[node name="VO" type="Node2D" parent="."]
+
+[node name="Start" type="AudioStreamPlayer" parent="VO"]
+stream = ExtResource( 39 )
+
+[node name="End" type="AudioStreamPlayer" parent="VO"]
+stream = ExtResource( 40 )

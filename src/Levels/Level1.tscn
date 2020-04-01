@@ -1144,14 +1144,20 @@ position = Vector2( 960, 432 )
 texture = ExtResource( 5 )
 
 [node name="level_01-bg" type="Sprite" parent="frame"]
-position = Vector2( -42, 0 )
+visible = false
+position = Vector2( 392, 112 )
 texture = ExtResource( 6 )
+
+[node name="Boat" type="Sprite" parent="frame"]
+visible = false
+position = Vector2( 392, 112 )
+texture = ExtResource( 9 )
 
 [node name="CharacterA" parent="." instance=ExtResource( 1 )]
 position = Vector2( 492, 432 )
 
 [node name="CharacterB" parent="." instance=ExtResource( 1 )]
-position = Vector2( 776, 432 )
+position = Vector2( 790.194, 435.419 )
 
 [node name="CharacterC" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1060, 432 )

@@ -2,27 +2,41 @@ extends Node2D
 
 export (Texture) var card_texture = null
 export (String) var title_text = ""
+export (bool) var shake = false
+export (float) var shake_amount = 2
 
 var drag_mouse = false
 var over_slot = false
 var inserted = false
 var current_slot = null
 var slot_pos
-var prev_index=0
+var prev_index = 0
 var pos_initial
+var timer = 0
 
 func _ready():
+	EventsManager.connect("level_started", self, "_on_level_started")
+	
 	$Area2D.connect('input_event', self, '_on_input_event')
 	
 	$Area2D/Sprite.texture = card_texture
 	
 	$Area2D/Label.set_text(title_text)
 	
-	pos_initial = get_position()
 
 func _process(delta):
 	if (drag_mouse):
 		set_position(get_viewport().get_mouse_position())
+	
+	if shake:
+		timer += 1
+		set_position(
+			pos_initial + Vector2(rand_range(-1.0, 1.0) * shake_amount, rand_range(-1.0, 1.0) * shake_amount)
+		)
+	if timer >= 60:
+		shake = false
+		timer = 0
+		set_position(pos_initial)
 
 
 func drag_card():
@@ -73,6 +87,9 @@ func _on_input_event(viewport, event, shape_idx):
 			get_parent().add_card(self)
 		elif drag_mouse:
 			drop_card()	
+
+func _on_level_started():
+	pos_initial = get_position()
 
 func restart():
 	drag_card()
