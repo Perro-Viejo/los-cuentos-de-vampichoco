@@ -6,7 +6,6 @@ var type = "Slot"
 var current_card=null
 
 func _ready():
-	connect('area_entered', self, '_on_area_entered')
 	$Slot.texture = slot_texture
 
 func _on_area_exited(card):

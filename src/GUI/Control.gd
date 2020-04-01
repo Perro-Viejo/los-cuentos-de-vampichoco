@@ -1,3 +1,4 @@
+class_name GUI
 extends Control
 
 var dragging_card=false;

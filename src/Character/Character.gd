@@ -1,12 +1,13 @@
 class_name Character
 extends Node2D
 
-var _current_character = ""
+var _current_character: String = ""
 
 onready var dino: AnimatedSprite = $Dino
 onready var paisano: AnimatedSprite = $Paisano
 onready var volcano: AnimatedSprite = $Volcano
 onready var dino_dflt_y: float = dino.position.y
+onready var volcano_dflt_y: float = volcano.position.y
 
 func _ready() -> void:
 	register_listener(dino, 'dino')
@@ -46,45 +47,61 @@ func character_hide(current_character):
 			EventsManager.emit_signal('stop_requested', 'Volcano', 'Dance')
 
 func restart():
-	_current_character = ""
-	$Dino.hide()
-	$Dino.stop()
-	$Paisano.hide()
-	$Paisano.stop()
-	$Volcano.hide()
-	$Volcano.stop()
+	show()
+	stop_anim()
+
+	_current_character = ''
+	
+	for anim_sprite in get_children():
+		anim_sprite.hide()
 
 
-func play_anim(id) -> void:
+func play_anim(id: String) -> void:
 	var node: AnimatedSprite
 	
 	match _current_character:
 		"Dino":
 			node = $Dino
-			
-			if id == 'Eat':
-				dino.position.y = dino_dflt_y - 32
-			else:
-				dino.position.y = dino_dflt_y
-				
-			# Reproducir SFXs
+
 			match id:
+				'Eat':
+					dino.position.y = dino_dflt_y - 32
+					EventsManager.emit_signal('play_requested', 'Dino', 'Eat')
 				'Run':
 					EventsManager.emit_signal('play_requested', 'Dino', 'Scream')
 				'Drown':
 					EventsManager.emit_signal('play_requested', 'Dino', id)
+				'Sleep':
+					EventsManager.emit_signal('play_requested', 'Dino', 'Sleep')
+				'Burn':
+					_burn(node.position)
+					EventsManager.emit_signal('stop_requested', 'Dino', 'Sleep')
+					EventsManager.emit_signal('play_requested', 'Dino', 'Scream')
+					node.hide()
+					return
+				_:
+					dino.position.y = dino_dflt_y
 		"Paisano":
 			node = $Paisano
 			
-			# Reproducir SFXs
-			if id == 'Walk':
-				EventsManager.emit_signal('play_requested', 'Paisano', 'Walk')
+			match id:
+				'Walk', 'Dance', 'DanceAlone':
+					EventsManager.emit_signal('play_requested', 'Paisano', 'Walk')
+				'Climb':
+					EventsManager.emit_signal('play_requested', 'Paisano', 'Climb')
+				'Burn':
+					_burn(node.position)
+					node.hide()
+					return
 		"Volcano":
 			node = $Volcano
 			
-			# Reproducir SFXs
-			if id == 'Erupt':
-				EventsManager.emit_signal('play_requested', 'Volcano', 'Explode')
+			match id:
+				'Erupt':
+					EventsManager.emit_signal('play_requested', 'Volcano', 'Explode')
+				'Dance':
+					volcano.position.y = volcano_dflt_y - 24
+					EventsManager.emit_signal('play_requested', 'Volcano', 'Dance')
 	
 	node.play(id)
 
@@ -95,10 +112,16 @@ func stop_anim() -> void:
 	match _current_character:
 		"Dino":
 			node = $Dino
+			
+			if dino.animation == 'Dance':
+				EventsManager.emit_signal('stop_requested', 'Dino', 'Dance')
 		"Paisano":
 			node = $Paisano
 		"Volcano":
 			node = $Volcano
+			
+			if volcano.animation == 'Dance':
+				EventsManager.emit_signal('stop_requested', 'Volcano', 'Dance')
 	
 	node.stop()
 
@@ -114,6 +137,8 @@ func _on_animation_finished(src: String) -> void:
 		'volcano':
 			if volcano.animation == 'Erupt':
 				volcano.play('EruptLoop')
+			elif volcano.animation == 'Dance':
+				volcano.position.y = volcano_dflt_y - 32
 		'dino':
 			if dino.animation == 'Eat':
 				dino.position.y = dino_dflt_y
@@ -134,6 +159,16 @@ func _on_frame_changed(src: String) -> void:
 				if $Dino.get_frame() == 0 or $Dino.get_frame() == 3:
 					EventsManager.emit_signal('play_requested', 'Dino', 'FS')
 		'paisano':
-			pass
+			if $Paisano.animation == 'Climb':
+				if $Paisano.frame == 6:
+					_burn($Paisano.position)
 		'volcano':
 			pass
+
+
+func _burn(position: Vector2) -> void:
+	$Fire.position = position
+	
+	$Fire.show()
+	EventsManager.emit_signal('play_requested', 'Paisano', 'Burn')
+	$Fire.play('Burn')

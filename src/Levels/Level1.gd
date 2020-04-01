@@ -6,12 +6,15 @@ var slot_order = ['Empty','Empty','Empty',]
 var _story: String = ''
 # on ready
 onready var _dflt_pos: Dictionary = {
-	character_a = $CharacterA.position,
-	character_b = $CharacterB.position,
-	character_c = $CharacterC.position
+	a = $GUI/Control/SlotA.position,
+	b = $GUI/Control/SlotB.position,
+	c = $GUI/Control/SlotC.position
 }
 
 func _ready():
+	# Poner posiciones por defecto
+	_set_dflt_positions()
+	
 	EventsManager.emit_signal('play_requested', 'BG', 'Level1')
 	EventsManager.connect('card_inserted', self, '_on_card_inserted')
 	EventsManager.connect('card_removed', self, '_on_card_removed')
@@ -57,85 +60,51 @@ func _on_card_removed(Slot, Character):
 func storyboard_complete():
 	yield(get_tree().create_timer(2.4), "timeout")
 	EventsManager.emit_signal('storyboard_completed')
+	
+	var final_num: int = 0
+	var final_text: String = 'Final #%s'
 
 	match slot_order:
 		['Volcano','Dino','Paisano']:
-			_story = 'Final_01'
-			$Animations/End01.play('Start')
-			
-			yield($Animations/End01, 'animation_finished')
-			
-			$Final.set_text('Final #1')
-			restart()
+			final_num = 1
 		['Volcano','Paisano','Dino']:
-			EventsManager.emit_signal('play_requested', 'Volcano', 'Explode')
-			EventsManager.emit_signal('play_requested', 'Paisano', 'Show')
-			EventsManager.emit_signal('play_requested', 'Dino', 'Scream')
-			yield(play_anims('Erupt', 'Idle', 'Run'), 'completed')
-			
-			$Final.set_text('Final #2')
-			EventsManager.emit_signal('play_requested', "Final", 'Final_02')
-			restart()
+			final_num = 2
 		['Dino','Volcano','Paisano']:
-#			EventsManager.emit_signal('play_requested', 'Paisano', 'Burn')
-			EventsManager.emit_signal('play_requested', 'Volcano', 'Explode')
-			EventsManager.emit_signal('play_requested', 'Dino', 'Sleep')
-			$Fire.set_position($CharacterA.position)
-			$Fire.play('Burn')
-			$Fire.show()
-			yield(play_anims('Sleep', 'Erupt', 'Idle'), 'completed')
-			
-			$Final.set_text('Final #3')
-			EventsManager.emit_signal('play_requested', "Final", 'Final_03')
-			restart()
+			final_num = 3
 		['Paisano','Volcano','Dino']:
-			EventsManager.emit_signal('play_requested', 'Paisano', 'Climb')
-			EventsManager.emit_signal('play_requested', 'Volcano', 'Explode')
-			EventsManager.emit_signal('play_requested', 'Dino', 'Scream')
-			$Fire.set_position($CharacterA.position)
-			$Fire.play('Burn')
-			$Fire.show()
-			yield(play_anims('Climb', 'Erupt', 'Run'), 'completed')
-			
-			$Final.set_text('Final #4')
-			EventsManager.emit_signal('play_requested', "Final", 'Final_04')
-			restart()
+			final_num = 4
 		['Dino','Paisano','Volcano']:
-			EventsManager.emit_signal('play_requested', 'Volcano', 'Dance')
-			EventsManager.emit_signal('play_requested', 'Dino', 'Eat')
-			yield(play_anims('Eat', 'Dance', 'Dance'), 'completed')
-			
-			$Final.set_text('Final #5')
-			EventsManager.emit_signal('play_requested', "Final", 'Final_05')
-			restart()
+			final_num = 5
 		['Paisano','Dino','Volcano']:
-			EventsManager.emit_signal('play_requested', 'Volcano', 'Dance')
-			EventsManager.emit_signal('play_requested', 'Dino', 'Dance')
-			yield(play_anims('Dance', 'Dance', 'Dance'), 'completed')
-			
-			$Final.set_text('Final #6')
-			EventsManager.emit_signal('play_requested', "Final", 'Final_06')
+			final_num = 6
+
+	_story = 'Final_0%d' % final_num
+	
+	$EndingAnimations.play(_story)
+	yield($EndingAnimations, 'animation_finished')
+
+	$Final.set_text(final_text % final_num)
+	$Final.show()
+
+	restart()
 
 func restart():
 	yield(get_tree().create_timer(5.0), 'timeout')
-	
+
 	$GUI.get_node("Control").restart()
+
 	EventsManager.emit_signal('play_requested', "Card", 'Reset')
+	
 	inserted_cards = 0
 	slot_order = ['Empty','Empty','Empty',]
+
 	$CharacterA.restart()
 	$CharacterB.restart()
 	$CharacterC.restart()
-	
-	$Fire.stop()
-	$Fire.hide()
+	$Final.set_text('')
+	$Final.hide()
 
-
-func play_anims(id_a: String, id_b: String, id_c: String) -> void:
-	$CharacterA.play_anim(id_a)
-	$CharacterB.play_anim(id_b)
-	$CharacterC.play_anim(id_c)
-	yield(get_tree().create_timer(10), 'timeout')
+	_set_dflt_positions()
 
 
 func play_vo() -> void:
@@ -144,3 +113,9 @@ func play_vo() -> void:
 
 func pause_vo() -> void:
 	EventsManager.emit_signal('pause_requested', "Final", _story)
+
+
+func _set_dflt_positions() -> void:
+	$CharacterA.position = _dflt_pos.a
+	$CharacterB.position = _dflt_pos.b
+	$CharacterC.position = _dflt_pos.c
