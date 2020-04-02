@@ -14,78 +14,78 @@
 [ext_resource path="res://resources/CanvasItemMaterial/Mask.tres" type="Material" id=12]
 [ext_resource path="res://assets/sprites/world/impact.png" type="Texture" id=13]
 
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 130, 0, 130, 130 )
+
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 9 )
-region = Rect2( 0, 0, 130, 130 )
+region = Rect2( 130, 0, 130, 130 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 9 )
-region = Rect2( 130, 0, 130, 130 )
+region = Rect2( 260, 0, 130, 130 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 9 )
-region = Rect2( 260, 0, 130, 130 )
+region = Rect2( 390, 0, 130, 130 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 9 )
-region = Rect2( 390, 0, 130, 130 )
+region = Rect2( 0, 0, 130, 130 )
 
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 9 )
-region = Rect2( 130, 0, 130, 130 )
-
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 2 ) ],
+"frames": [ SubResource( 1 ) ],
 "loop": false,
-"name": "Stay",
+"name": "Board",
 "speed": 1.0
 }, {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 3 ), SubResource( 5 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 2 ), SubResource( 4 ) ],
 "loop": true,
 "name": "Leave",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 6 ) ],
+"frames": [ SubResource( 5 ) ],
 "loop": false,
-"name": "Board",
+"name": "Stay",
 "speed": 1.0
 } ]
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=7]
 flags = 4
 atlas = ExtResource( 10 )
 region = Rect2( 0, 0, 140, 156 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=8]
 flags = 4
 atlas = ExtResource( 10 )
 region = Rect2( 140, 0, 140, 156 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=9]
 flags = 4
 atlas = ExtResource( 10 )
 region = Rect2( 280, 0, 140, 156 )
 
-[sub_resource type="SpriteFrames" id=19]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
-"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "default",
 "speed": 6.0
 } ]
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=11]
 size = 120
 extra_spacing_top = -20
 font_data = ExtResource( 7 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=12]
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -239,7 +239,7 @@ tracks/12/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=13]
 length = 18.0
 tracks/0/type = "method"
 tracks/0/path = NodePath("./CharacterB")
@@ -429,7 +429,7 @@ tracks/12/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=14]
 length = 18.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -569,7 +569,7 @@ tracks/9/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=15]
 length = 16.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -715,7 +715,7 @@ tracks/9/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=16]
 length = 24.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -855,7 +855,7 @@ tracks/9/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=17]
 length = 16.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -1001,7 +1001,7 @@ tracks/10/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=18]
 length = 18.0
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -1203,7 +1203,7 @@ material = ExtResource( 12 )
 position = Vector2( 336, 104 )
 z_index = 4
 z_as_relative = false
-frames = SubResource( 7 )
+frames = SubResource( 6 )
 animation = "Stay"
 playing = true
 
@@ -1213,16 +1213,14 @@ playing = true
 visible = false
 light_mask = 2
 material = ExtResource( 12 )
-frames = SubResource( 19 )
-frame = 2
+frames = SubResource( 10 )
 playing = true
 
 [node name="02" type="AnimatedSprite" parent="frame/Lavas"]
 visible = false
 light_mask = 2
 material = ExtResource( 12 )
-frames = SubResource( 19 )
-frame = 2
+frames = SubResource( 10 )
 playing = true
 
 [node name="Impacts" type="Node2D" parent="frame"]
@@ -1253,7 +1251,7 @@ margin_left = 882.918
 margin_top = 138.901
 margin_right = 1282.92
 margin_bottom = 239.901
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0.129412, 0.129412, 0.129412, 1 )
 align = 1
 __meta__ = {
@@ -1264,12 +1262,12 @@ __meta__ = {
 [node name="AudioManager" parent="." instance=ExtResource( 8 )]
 
 [node name="EndingAnimations" type="AnimationPlayer" parent="."]
-anims/EndTemplate = SubResource( 9 )
-anims/Final_01 = SubResource( 10 )
-anims/Final_02 = SubResource( 11 )
-anims/Final_03 = SubResource( 12 )
-anims/Final_04 = SubResource( 13 )
-anims/Final_05 = SubResource( 14 )
-anims/Final_06 = SubResource( 15 )
+anims/EndTemplate = SubResource( 12 )
+anims/Final_01 = SubResource( 13 )
+anims/Final_02 = SubResource( 14 )
+anims/Final_03 = SubResource( 15 )
+anims/Final_04 = SubResource( 16 )
+anims/Final_05 = SubResource( 17 )
+anims/Final_06 = SubResource( 18 )
 
 [node name="Tween" type="Tween" parent="."]

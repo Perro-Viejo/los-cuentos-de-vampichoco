@@ -21,7 +21,7 @@ func _ready():
 func _on_button_down():
 	if not _level_started:
 		start_level()
-	elif _level_started and _can_skip:
+	elif _level_started and _can_skip and not level_finished:
 		# Cambiar mensaje para que al siguiente clic se salte la animación
 		if not $Skip.visible:
 			$Skip.show()
@@ -57,6 +57,8 @@ func start_level():
 	yield(get_tree().create_timer(3.7), "timeout")
 	_next_step()
 	yield(get_tree().create_timer(0.7), "timeout")
+	$Skip.hide()
+	$Button.hide()
 
 
 func _next_step() -> void:
@@ -97,6 +99,8 @@ func _skip() -> void:
 
 	EventsManager.emit_signal('stop_requested', 'VO', 'Start')
 	EventsManager.emit_signal('level_started')
+	
+	$AnimationPlayer.playback_speed = 1.0
 	
 	$Skip.hide()
 	$Button.hide()

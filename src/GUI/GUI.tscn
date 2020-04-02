@@ -20,17 +20,17 @@ font_path = "res://assets/fonts/Gaegu-Bold.ttf"
 size = 160
 font_data = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 100
 font_data = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=4]
 size = 42
 font_data = SubResource( 1 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "End"
-length = 14.0
+length = 13.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("End:modulate")
 tracks/0/interp = 1
@@ -92,7 +92,7 @@ tracks/4/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.533333 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Control/Dino:position")
@@ -107,7 +107,7 @@ tracks/0/keys = {
 "values": [ Vector2( 624, 1318.34 ), Vector2( 624, 855 ), Vector2( 624, 885 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Control/Paisano:position")
@@ -122,7 +122,7 @@ tracks/0/keys = {
 "values": [ Vector2( 940, 1318.34 ), Vector2( 940, 845 ), Vector2( 940, 895 ), Vector2( 940, 885 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=8]
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Control/Volcano:position")
@@ -137,7 +137,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1262, 1318.34 ), Vector2( 1262, 845 ), Vector2( 1262, 885 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=9]
 length = 28.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Start:modulate")
@@ -152,7 +152,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=10]
 size = 48
 font_data = ExtResource( 10 )
 
@@ -277,7 +277,7 @@ margin_left = -1164.73
 margin_top = -140.429
 margin_right = -42.7291
 margin_bottom = -40.4292
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
 text = "Los cuentos de Vampichoco"
 __meta__ = {
@@ -345,9 +345,10 @@ margin_left = -960.0
 margin_top = 10.5201
 margin_right = 960.0
 margin_bottom = 237.641
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
-text = "Los textos en este juego no tienen tildes porque la fuente Gaegu no cuenta con ese tipo de caracteres. Que perdonen los amantes de la buena y correcta escritura. \\(^-^)/"
+text = "Los textos en este juego no tienen tildes porque la fuente Gaegu no cuenta con ese tipo de caracteres.
+Que perdonen los amantes de la buena y correcta escritura. \\(^-^)/"
 align = 1
 autowrap = true
 __meta__ = {
@@ -364,17 +365,17 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Menu"]
 playback_speed = 0.6
-anims/End = SubResource( 6 )
-anims/ShowDino = SubResource( 7 )
-anims/ShowPaisano = SubResource( 8 )
-anims/ShowVolcano = SubResource( 9 )
-anims/Start = SubResource( 10 )
+anims/End = SubResource( 5 )
+anims/ShowDino = SubResource( 6 )
+anims/ShowPaisano = SubResource( 7 )
+anims/ShowVolcano = SubResource( 8 )
+anims/Start = SubResource( 9 )
 
 [node name="Skip" type="Label" parent="Menu"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0.129412, 0.129412, 0.129412, 1 )
 text = ":: Haz clic de nuevo para omitir ::"
 align = 1
