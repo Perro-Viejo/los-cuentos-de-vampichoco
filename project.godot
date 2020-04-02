@@ -36,13 +36,19 @@ config/icon="res://icon.png"
 
 EventsManager="*res://src/Managers/EventsManager.gd"
 
+[debug]
+
+gdscript/warnings/unused_argument=false
+gdscript/warnings/unused_signal=false
+gdscript/warnings/return_value_discarded=false
+
 [display]
 
 window/size/width=1920
 window/size/height=1080
 window/size/test_width=960
 window/size/test_height=540
-window/stretch/mode="viewport"
+window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
 [rendering]

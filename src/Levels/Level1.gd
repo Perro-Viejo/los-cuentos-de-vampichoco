@@ -1,5 +1,5 @@
 extends Node2D
-
+#▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Variables ▒▒▒▒
 var inserted_cards = 0
 var slot_order = ['Empty','Empty','Empty',]
 # privates
@@ -11,7 +11,9 @@ onready var _dflt_pos: Dictionary = {
 	c = $GUI/Control/SlotC.position,
 	boat = $frame/Boat.position
 }
-
+onready var lavas: Node2D = $frame/Lavas
+onready var impacts: Node2D = $frame/Impacts
+#▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Funciones ▒▒▒▒
 func _ready():
 	# Poner posiciones por defecto
 	_set_dflt_positions()
@@ -106,7 +108,11 @@ func restart():
 	$CharacterC.restart()
 	$Final.set_text('')
 	$Final.hide()
+	
+	# Reestablecer cosas del escenario
 	$frame/Boat.play('Stay')
+	for impact in impacts.get_children(): impact.hide()
+	for lava in lavas.get_children(): lava.rotation_degrees = 0
 
 	_set_dflt_positions()
 
@@ -137,3 +143,71 @@ func _set_dflt_positions() -> void:
 	$CharacterB.position = _dflt_pos.b
 	$CharacterC.position = _dflt_pos.c
 	$frame/Boat.position = _dflt_pos.boat
+
+
+func _get_character(letter: String) -> Node2D:
+	return get_node('Character%s' % letter.to_upper()) as Node2D
+
+
+func spit_lava(src: String) -> void:
+	var character: Node2D = _get_character(src)
+
+	for lava in lavas.get_children():
+		lava.global_position = character.global_position
+		lava.position.y -= 16
+
+		$Tween.interpolate_property(
+			lava,
+			'position:y',
+			lava.position.y,
+			lava.position.y - 560,
+			0.5,
+			Tween.TRANS_SINE,
+			Tween.EASE_OUT
+		)
+		$Tween.start()
+		lava.show()
+
+		yield(get_tree().create_timer(0.5), 'timeout')
+
+
+func _show_mark(target: Node2D, key: NodePath, idx: int) -> void:
+	$Tween.disconnect('tween_completed', self, '_show_mark')
+
+	var impact: Sprite = impacts.get_child(idx)
+
+	impact.global_position = target.global_position
+	impact.position.y += 48
+	
+	# AUDIO: Aquí se puede reproducir en SFX de las bolas impactando
+	
+	impact.show()
+	target.hide()
+
+
+func fall_lava(targetA: String, targetB: String, wait: float = 0.0) -> void:
+	lavas.get_child(0).global_position.x = _get_character(targetA).global_position.x
+	lavas.get_child(1).global_position.x = _get_character(targetB).global_position.x
+	
+	var idx: int = 0
+	for lava in lavas.get_children():
+		lava.rotation_degrees = 180
+
+		if not $Tween.is_connected('tween_completed', self, '_show_mark'):
+			$Tween.connect('tween_completed', self, '_show_mark', [ idx ])
+
+		$Tween.interpolate_property(
+			lava,
+			'position:y',
+			lava.position.y,
+			lava.position.y + 560,
+			0.7,
+			Tween.TRANS_SINE,
+			Tween.EASE_IN
+		)
+		$Tween.start()
+		# AUDIO: Aquí se puede reproducir en SFX de las bolas cayendo
+
+		yield(get_tree().create_timer(wait), 'timeout')
+
+		idx += 1

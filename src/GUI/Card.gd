@@ -9,7 +9,6 @@ var drag_mouse = false
 var over_slot = false
 var inserted = false
 var current_slot = null
-var slot_pos
 var prev_index = 0
 var pos_initial
 var timer = 0
@@ -99,7 +98,6 @@ func restart():
 	over_slot = false
 	inserted = false
 	current_slot = null
-	slot_pos
 	prev_index=0
 	
 func dropped(target_pos: Vector2) -> void:

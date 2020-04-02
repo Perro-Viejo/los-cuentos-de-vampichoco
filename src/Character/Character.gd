@@ -1,14 +1,17 @@
 class_name Character
 extends Node2D
+#▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Variables ▒▒▒▒
+export(int) var despair_to_die = 20
 
 var _current_character: String = ""
+var _despair_count: int = 0
 
 onready var dino: AnimatedSprite = $Dino
 onready var paisano: AnimatedSprite = $Paisano
 onready var volcano: AnimatedSprite = $Volcano
 onready var dino_dflt_y: float = dino.position.y
 onready var volcano_dflt_y: float = volcano.position.y
-
+#▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Funciones ▒▒▒▒
 func _ready() -> void:
 	register_listener(dino, 'dino')
 	register_listener(paisano, 'paisano')
@@ -53,6 +56,9 @@ func restart():
 
 	_current_character = ''
 	
+	dino.position.y = dino_dflt_y
+	volcano.position.y = volcano_dflt_y
+	
 	for anim_sprite in get_children():
 		anim_sprite.hide()
 
@@ -83,8 +89,6 @@ func play_anim(id: String) -> void:
 					EventsManager.emit_signal('play_requested', 'Dino', 'Burn')
 					node.hide()
 					return
-				_:
-					dino.position.y = dino_dflt_y
 		"Paisano":
 			node = $Paisano
 			
@@ -102,6 +106,7 @@ func play_anim(id: String) -> void:
 			
 			match id:
 				'Erupt':
+					volcano.position.y = volcano_dflt_y - 16
 					EventsManager.emit_signal('play_requested', 'Volcano', 'Explode')
 				'Dance':
 					volcano.position.y = volcano_dflt_y - 24
@@ -132,7 +137,6 @@ func stop_anim() -> void:
 
 
 func register_listener(node: AnimatedSprite, id: String) -> void:
-# warning-ignore:return_value_discarded
 	node.connect('animation_finished', self, '_on_animation_finished', [id])
 	node.connect('frame_changed', self, '_on_frame_changed', [id])
 
@@ -142,8 +146,8 @@ func _on_animation_finished(src: String) -> void:
 		'volcano':
 			if volcano.animation == 'Erupt':
 				volcano.play('EruptLoop')
-			elif volcano.animation == 'Dance':
-				volcano.position.y = volcano_dflt_y - 32
+#			elif volcano.animation == 'Dance':
+#				volcano.position.y = volcano_dflt_y - 32
 		'dino':
 			if dino.animation == 'Eat':
 				dino.position.y = dino_dflt_y
@@ -151,9 +155,21 @@ func _on_animation_finished(src: String) -> void:
 				dino.play('Dance')
 				EventsManager.emit_signal('play_requested', 'Dino', 'Dance')
 		'paisano':
-			if paisano.animation == 'Climb':
-				paisano.play('ClimbLoop')
-				
+			match paisano.animation:
+				'Climb':
+					paisano.play('ClimbLoop')
+				'ClimbLoop':
+					_despair_count += 1
+					if _despair_count == despair_to_die:
+						_despair_count = 0
+
+						paisano.stop()
+						paisano.hide()
+						
+						# TODO: Reproducir el sonido de muerte con sufrimiento
+						# del paisano
+						# EventsManager.emit_signal('play_requested', 'Paisano', 'Scream')
+						
 func _on_frame_changed(src: String) -> void:
 	match src:
 		'dino':

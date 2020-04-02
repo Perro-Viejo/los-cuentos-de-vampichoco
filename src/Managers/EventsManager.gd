@@ -9,6 +9,7 @@ signal storyboard_completed()
 signal play_requested(source, sound)
 signal stop_requested(source, sound)
 signal pause_requested(source, sound)
+signal speedup_requested(source, sound)
 
 #----------Animation--------------
 signal level_started()
