@@ -7,11 +7,15 @@ var _can_skip: bool = false
 var _intro_step: int = 0
 var _skipped: bool = false
 
-onready var level_bg: Sprite = $'../../frame/level_01-bg'
+onready var level_water: Node2D = $'../../frame/Water'
+onready var level_water_anim: AnimationPlayer = level_water.get_node('AnimationPlayer')
 onready var level_boat: AnimatedSprite = $'../../frame/Boat'
 #▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Funciones ▒▒▒▒
 func _ready():
-	level_bg.hide()
+	level_water.hide()
+	# Para asegurar que no se verá el agua así se deje la animación End en el
+	# editor: #ChirriDeMierda
+	level_water_anim.play('Start', 1.0, -2.0, true)
 	level_boat.hide()
 	
 	$Button.connect('button_down', self, '_on_button_down')
@@ -29,12 +33,12 @@ func _on_button_down():
 			# TODO: Que se tenga que sostener el clic para saltarla
 			_skip()
 	elif level_finished:
+		$Button.hide()
 		$End/Label3.hide()
 		$AnimationPlayer.play('End', -1, -3.0, true)
 		yield($AnimationPlayer, 'animation_finished')
 		get_parent().get_parent().restart()
 		yield(get_tree().create_timer(0.5), 'timeout')
-		$Button.hide()
 		hide()
 
 func start_level():
@@ -68,7 +72,8 @@ func _next_step() -> void:
 		0:
 			EventsManager.emit_signal('play_requested', 'VO', 'Start')
 		1:
-			level_bg.show()
+			level_water.show()
+			level_water_anim.play('Start')
 		2:
 			level_boat.show()
 		3:
@@ -86,10 +91,11 @@ func _next_step() -> void:
 
 func _skip() -> void:
 	_skipped = true
-	
+
 	$AnimationPlayer.playback_speed = 4.0
 	# Mostrar fondo del nivel
-	level_bg.show()
+	level_water.show()
+	level_water_anim.play('End')
 	level_boat.show()
 	# Poner las cartas en sus posiciones Y finales
 	$'../Control/Dino'.position.y = 885
@@ -99,8 +105,15 @@ func _skip() -> void:
 
 	EventsManager.emit_signal('stop_requested', 'VO', 'Start')
 	EventsManager.emit_signal('level_started')
-	
-	$AnimationPlayer.playback_speed = 1.0
-	
+
 	$Skip.hide()
 	$Button.hide()
+
+
+func finish_level() -> void:
+	$AnimationPlayer.playback_speed = 1.0
+	yield($AnimationPlayer, 'animation_finished')
+	level_finished = true
+	yield(get_tree().create_timer(2), "timeout")
+	$End/Label3.show()
+	$Button.show()

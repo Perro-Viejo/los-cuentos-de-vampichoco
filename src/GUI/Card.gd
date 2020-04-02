@@ -21,7 +21,7 @@ func _ready():
 	$Area2D/Sprite.texture = card_texture
 	
 	$Area2D/Label.set_text(title_text)
-	
+
 
 func _process(delta):
 	if (drag_mouse):
@@ -48,11 +48,17 @@ func drag_card():
 	
 	if current_slot:
 		current_slot.remove_card(self)
+	
+	# Cambiar el cursor por el de la mano apretando:
+	Input.set_default_cursor_shape(Input.CURSOR_MOVE)
 
 
 func drop_card():
 	drag_mouse = false;
 	get_parent().remove_card()
+	
+	# Cambiar el cursor por la flecha
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	
 	var overlapping_area = null
 	
@@ -79,7 +85,8 @@ func drop_card():
 	else:
 		EventsManager.emit_signal('play_requested', 'Card', 'Drop')
 		inserted = false
-			
+
+
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
