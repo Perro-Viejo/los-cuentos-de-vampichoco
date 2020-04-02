@@ -85,8 +85,11 @@ func storyboard_complete():
 
 	$Final.set_text(final_text % final_num)
 	$Final.show()
-
-	restart()
+	
+	if final_num != 6:
+		restart()
+	else:
+		end_level()
 
 func restart():
 	yield(get_tree().create_timer(5.0), 'timeout')
@@ -107,7 +110,20 @@ func restart():
 
 	_set_dflt_positions()
 
-
+func end_level():
+	$GUI/Menu.show()
+	$GUI/Menu/AnimationPlayer.play('End')
+	yield(get_tree().create_timer(5), "timeout")
+	EventsManager.emit_signal('play_requested', 'VO', 'End')
+	EventsManager.emit_signal('stop_requested', 'Dino', 'Dance')
+	EventsManager.emit_signal('stop_requested', 'Volcano', 'Dance')
+	yield($GUI/Menu/AnimationPlayer, 'animation_finished')
+	$GUI/Menu.level_finished = true
+	yield(get_tree().create_timer(2), "timeout")
+	$GUI/Menu/End/Label3.show()
+	$GUI/Menu/Button.show()
+	
+	
 func play_vo() -> void:
 	EventsManager.emit_signal('play_requested', "Final", _story)
 

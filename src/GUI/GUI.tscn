@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/sprites/gui/slot.png" type="Texture" id=1]
 [ext_resource path="res://src/GUI/Card.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/GUI/Slot.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/GUI/Control.gd" type="Script" id=7]
 [ext_resource path="res://src/GUI/Menu.gd" type="Script" id=8]
+[ext_resource path="res://assets/sprites/PerroViejo_Logo TEMP.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/fonts/Gaegu-Bold.ttf"
@@ -19,6 +20,66 @@ font_data = SubResource( 1 )
 [sub_resource type="DynamicFont" id=3]
 size = 70
 font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 100
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 65
+font_data = SubResource( 1 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "End"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("End:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("End/Label2:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5.4, 8.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1083.53 ), Vector2( 0, 1083.53 ), Vector2( 0, 446.56 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("End/Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 8.6, 9.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.407843 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("End/Logo:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 10.2, 11.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 764, -366.585 ), Vector2( 764, -366.585 ), Vector2( 764, 135.766 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "ShowDino"
@@ -71,7 +132,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=7]
 length = 28.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("BG:modulate")
+tracks/0/path = NodePath("Start:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -141,7 +202,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BG" type="ColorRect" parent="Menu"]
+[node name="Start" type="ColorRect" parent="Menu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -150,7 +211,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Menu/BG"]
+[node name="Label" type="Label" parent="Menu/Start"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -166,7 +227,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="Menu/BG"]
+[node name="Label2" type="Label" parent="Menu/Start"]
 modulate = Color( 1, 1, 1, 0.619608 )
 anchor_left = 0.5
 anchor_top = 0.681
@@ -184,6 +245,84 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="End" type="ColorRect" parent="Menu"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+color = Color( 0.129412, 0.129412, 0.129412, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Menu/End"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1164.73
+margin_top = -140.429
+margin_right = -42.7291
+margin_bottom = -40.4292
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
+text = "Los cuentos de Vampichoco"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Menu/End"]
+anchor_left = 0.5
+anchor_top = 0.681
+anchor_right = 0.5
+anchor_bottom = 0.742
+margin_left = -960.0
+margin_top = 348.051
+margin_right = 960.0
+margin_bottom = 575.172
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
+text = "Mateo Robayo - Arte/Programacion
+Itzel Gonzalez Estrada - Audio/Narrativa
+Juan Carlos Garcia Angel - Audio/Programacion/Voz
+Jose Romero - Programacion"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Menu/End"]
+visible = false
+modulate = Color( 1, 1, 1, 0.784314 )
+anchor_left = 0.5
+anchor_top = 0.681
+anchor_right = 0.5
+anchor_bottom = 0.742
+margin_left = -960.0
+margin_top = 102.867
+margin_right = 960.0
+margin_bottom = 329.988
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
+text = "-Haz Click para Regresar-"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="TextureRect" parent="Menu/End"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -196.0
+margin_top = -366.585
+margin_right = 196.0
+margin_bottom = -91.5847
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Button" type="Button" parent="Menu"]
 modulate = Color( 1, 1, 1, 0 )
 margin_right = 1920.0
@@ -194,6 +333,7 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Menu"]
 playback_speed = 0.6
+anims/End = SubResource( 8 )
 anims/ShowDino = SubResource( 4 )
 anims/ShowPaisano = SubResource( 5 )
 anims/ShowVolcano = SubResource( 6 )

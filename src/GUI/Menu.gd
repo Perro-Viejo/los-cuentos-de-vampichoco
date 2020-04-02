@@ -1,11 +1,21 @@
 extends Control
 
+var level_finished = false
 
 func _ready():
 	$Button.connect('button_down', self, '_on_button_down')
 
 func _on_button_down():
-	start_level()
+	if not level_finished:
+		start_level()
+	else:
+		$End/Label3.hide()
+		$AnimationPlayer.play('End', -1, -3.0, true)
+		yield($AnimationPlayer, 'animation_finished')
+		get_parent().get_parent().restart()
+		yield(get_tree().create_timer(0.5), 'timeout')
+		$Button.hide()
+		hide()
 
 func start_level():
 	$Button.hide()

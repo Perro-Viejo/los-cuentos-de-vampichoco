@@ -74,10 +74,13 @@ func play_anim(id: String) -> void:
 					EventsManager.emit_signal('play_requested', 'Dino', id)
 				'Sleep':
 					EventsManager.emit_signal('play_requested', 'Dino', 'Sleep')
+				'Dance':
+					EventsManager.emit_signal('play_requested', 'Dino', 'Dance')
 				'Burn':
 					_burn(node.position)
 					EventsManager.emit_signal('stop_requested', 'Dino', 'Sleep')
 					EventsManager.emit_signal('play_requested', 'Dino', 'Scream')
+					EventsManager.emit_signal('play_requested', 'Dino', 'Burn')
 					node.hide()
 					return
 				_:
@@ -124,7 +127,8 @@ func stop_anim() -> void:
 			if volcano.animation == 'Dance':
 				EventsManager.emit_signal('stop_requested', 'Volcano', 'Dance')
 	
-	node.stop()
+	if node.stop() in node:
+		node.stop()
 
 
 func register_listener(node: AnimatedSprite, id: String) -> void:

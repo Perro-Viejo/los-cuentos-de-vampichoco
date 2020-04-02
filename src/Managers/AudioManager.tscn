@@ -71,6 +71,7 @@ stream = ExtResource( 3 )
 
 [node name="Dance" type="AudioStreamPlayer" parent="Dino"]
 stream = ExtResource( 25 )
+volume_db = -2.0
 
 [node name="Drown" type="AudioStreamPlayer" parent="Dino"]
 stream = ExtResource( 24 )
@@ -80,6 +81,7 @@ stream = ExtResource( 23 )
 
 [node name="Sleep" type="AudioStreamPlayer" parent="Dino"]
 stream = ExtResource( 21 )
+volume_db = -2.0
 
 [node name="Scream" type="Node2D" parent="Dino"]
 script = ExtResource( 32 )
@@ -95,6 +97,7 @@ stream = ExtResource( 34 )
 
 [node name="FS" type="Node2D" parent="Dino"]
 script = ExtResource( 32 )
+Volume = -3.0
 
 [node name="FS" type="AudioStreamPlayer" parent="Dino/FS"]
 stream = ExtResource( 36 )
@@ -103,6 +106,10 @@ volume_db = -3.0
 [node name="FS2" type="AudioStreamPlayer" parent="Dino/FS"]
 stream = ExtResource( 35 )
 volume_db = -3.0
+
+[node name="Burn" type="AudioStreamPlayer" parent="Dino"]
+stream = ExtResource( 19 )
+pitch_scale = 0.5
 
 [node name="Paisano" type="Node2D" parent="."]
 
@@ -182,9 +189,12 @@ stream = ExtResource( 5 )
 [node name="Boat" type="Node2D" parent="."]
 
 [node name="Board" type="AudioStreamPlayer2D" parent="Boat"]
+position = Vector2( 1329.94, 484.313 )
 stream = ExtResource( 38 )
+volume_db = 2.0
 
 [node name="Leave" type="AudioStreamPlayer2D" parent="Boat"]
+position = Vector2( 1629.75, 484.313 )
 stream = ExtResource( 37 )
 
 [node name="VO" type="Node2D" parent="."]
