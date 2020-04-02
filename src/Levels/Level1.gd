@@ -8,7 +8,8 @@ var _story: String = ''
 onready var _dflt_pos: Dictionary = {
 	a = $GUI/Control/SlotA.position,
 	b = $GUI/Control/SlotB.position,
-	c = $GUI/Control/SlotC.position
+	c = $GUI/Control/SlotC.position,
+	boat = $frame/Boat.position
 }
 
 func _ready():
@@ -102,6 +103,7 @@ func restart():
 	$CharacterC.restart()
 	$Final.set_text('')
 	$Final.hide()
+	$frame/Boat.play('Stay')
 
 	_set_dflt_positions()
 
@@ -118,3 +120,4 @@ func _set_dflt_positions() -> void:
 	$CharacterA.position = _dflt_pos.a
 	$CharacterB.position = _dflt_pos.b
 	$CharacterC.position = _dflt_pos.c
+	$frame/Boat.position = _dflt_pos.boat
