@@ -113,6 +113,7 @@ func restart():
 	$frame/Boat.play('Stay')
 	for impact in impacts.get_children(): impact.hide()
 	for lava in lavas.get_children(): lava.rotation_degrees = 0
+	$frame/Palms.hide()
 
 	_set_dflt_positions()
 
