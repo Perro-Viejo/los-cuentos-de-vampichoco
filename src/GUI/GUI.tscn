@@ -8,7 +8,7 @@
 [ext_resource path="res://src/GUI/Slot.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/GUI/Control.gd" type="Script" id=7]
 [ext_resource path="res://src/GUI/Menu.gd" type="Script" id=8]
-[ext_resource path="res://assets/sprites/PerroViejo_Logo TEMP.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/gui/perro_viejo.png" type="Texture" id=9]
 [ext_resource path="res://assets/fonts/Gaegu-Bold.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://resources/DynamicFont/Credits-65.tres" type="DynamicFont" id=11]
 [ext_resource path="res://resources/DynamicFont/Credits-70.tres" type="DynamicFont" id=12]
@@ -75,10 +75,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 10.2, 11.8 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 11.1, 11.8, 12.1 ),
+"transitions": PoolRealArray( 1, 2, 0.5, 1 ),
 "update": 0,
-"values": [ Vector2( 764, -366.585 ), Vector2( 764, -366.585 ), Vector2( 764, 135.766 ) ]
+"values": [ Vector2( 828, -520 ), Vector2( 828, -520 ), Vector2( 976, 128 ), Vector2( 828, 48 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("End/Label4:modulate")
@@ -91,6 +91,18 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1, -2, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.533333 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("End/Logo:rect_rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 11.1, 11.8, 12.1 ),
+"transitions": PoolRealArray( 2, 2, 0.5, 1 ),
+"update": 0,
+"values": [ 63.8, 63.8, -32.0, 0.0 ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -208,7 +220,6 @@ card_texture = ExtResource( 4 )
 title_text = "Volcano Bacano"
 
 [node name="Menu" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -270,6 +281,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Logo" type="TextureRect" parent="Menu/End"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -132.0
+margin_top = -520.0
+margin_right = 176.001
+margin_bottom = -136.0
+rect_rotation = 63.8
+rect_pivot_offset = Vector2( 154, 192 )
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Label" type="Label" parent="Menu/End"]
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 1.0
@@ -295,7 +320,7 @@ anchor_bottom = 0.742
 margin_left = -960.0
 margin_top = 348.05
 margin_right = 960.0
-margin_bottom = 575.171
+margin_bottom = 575.17
 custom_fonts/font = ExtResource( 12 )
 custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
 text = "Mateo Robayo - Arte/Programacion
@@ -322,18 +347,6 @@ custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0.92549, 0.92549, 0.92549, 1 )
 text = "-Haz Click para Regresar-"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Logo" type="TextureRect" parent="Menu/End"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -196.0
-margin_top = -366.585
-margin_right = 196.0
-margin_bottom = -91.5847
-texture = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

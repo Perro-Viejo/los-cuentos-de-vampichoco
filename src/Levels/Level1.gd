@@ -13,6 +13,7 @@ onready var _dflt_pos: Dictionary = {
 }
 onready var lavas: Node2D = $frame/Lavas
 onready var impacts: Node2D = $frame/Impacts
+onready var _final: Label = $WorldGUI/Final
 #▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Funciones ▒▒▒▒
 func _ready():
 	# Poner posiciones por defecto
@@ -56,7 +57,7 @@ func _on_card_removed(Slot, Character):
 		slot_order.remove(2)
 		slot_order.insert(2, 'Empty')
 		$CharacterC.character_hide(Character)
-	$Final.set_text('')
+	_final.set_text('')
 
 
 func storyboard_complete():
@@ -85,8 +86,8 @@ func storyboard_complete():
 	$EndingAnimations.play(_story)
 	yield($EndingAnimations, 'animation_finished')
 
-	$Final.set_text(final_text % final_num)
-	$Final.show()
+	_final.set_text(final_text % final_num)
+	_final.show()
 	
 	if final_num != 6:
 		restart()
@@ -106,8 +107,8 @@ func restart():
 	$CharacterA.restart()
 	$CharacterB.restart()
 	$CharacterC.restart()
-	$Final.set_text('')
-	$Final.hide()
+	_final.set_text('')
+	_final.hide()
 	
 	# Reestablecer cosas del escenario
 	$frame/Boat.play('Stay')
@@ -125,6 +126,7 @@ func end_level():
 	EventsManager.emit_signal('play_requested', 'VO', 'End')
 	EventsManager.emit_signal('stop_requested', 'Dino', 'Dance')
 	EventsManager.emit_signal('stop_requested', 'Volcano', 'Dance')
+	_final.hide()
 	$GUI/Menu.finish_level()
 
 

@@ -1518,7 +1518,6 @@ light_mask = 2
 material = ExtResource( 12 )
 position = Vector2( 438, 120 )
 frames = SubResource( 19 )
-frame = 2
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="frame/Water"]
@@ -1529,7 +1528,7 @@ anims/Start = SubResource( 21 )
 visible = false
 position = Vector2( -468, -13 )
 frames = SubResource( 26 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="CharacterA" parent="." instance=ExtResource( 1 )]
@@ -1544,15 +1543,17 @@ z_index = 2
 position = Vector2( 1060, 432 )
 z_index = 2
 
-[node name="Final" type="Label" parent="."]
+[node name="WorldGUI" type="CanvasLayer" parent="."]
+
+[node name="Final" type="Label" parent="WorldGUI"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 882.918
-margin_top = 138.901
-margin_right = 1282.92
-margin_bottom = 239.901
+margin_left = -77.082
+margin_top = -401.099
+margin_right = 345.918
+margin_bottom = -300.099
 custom_fonts/font = SubResource( 27 )
 custom_colors/font_color = Color( 0.129412, 0.129412, 0.129412, 1 )
 align = 1

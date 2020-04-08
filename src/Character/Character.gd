@@ -82,6 +82,7 @@ func play_anim(id: String) -> void:
 					EventsManager.emit_signal('play_requested', 'Dino', 'Sleep')
 				'Dance':
 					EventsManager.emit_signal('play_requested', 'Dino', 'Dance')
+					EventsManager.emit_signal('stop_requested', 'Dino', 'Sleep')
 				'Burn':
 					_burn(node.position)
 					EventsManager.emit_signal('stop_requested', 'Dino', 'Sleep')
