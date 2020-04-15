@@ -44,6 +44,8 @@ func character_hide(current_character):
 	if current_character == "Paisano":
 		$Paisano.hide()
 		$Paisano.stop()
+		if paisano.animation == 'Dance' or paisano.animation == 'DanceAlone':
+			EventsManager.emit_signal('stop_requested', 'Paisano', 'Dance')
 	if current_character == "Volcano":
 		$Volcano.hide()
 		$Volcano.stop()
@@ -94,8 +96,10 @@ func play_anim(id: String) -> void:
 			node = $Paisano
 			
 			match id:
-				'Walk', 'Dance', 'DanceAlone':
+				'Walk':
 					EventsManager.emit_signal('play_requested', 'Paisano', 'Walk')
+				'Dance', 'DanceAlone':
+					EventsManager.emit_signal('play_requested', 'Paisano', 'Dance')
 				'Climb':
 					EventsManager.emit_signal('play_requested', 'Paisano', 'Climb')
 				'Burn':
@@ -127,6 +131,9 @@ func stop_anim() -> void:
 				EventsManager.emit_signal('stop_requested', 'Dino', 'Dance')
 		"Paisano":
 			node = $Paisano
+			
+			if paisano.animation == 'Dance' or paisano.animation == 'DanceAlone':
+				EventsManager.emit_signal('stop_requested', 'Paisano', 'Dance')
 		"Volcano":
 			node = $Volcano
 			

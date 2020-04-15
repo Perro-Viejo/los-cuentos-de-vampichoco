@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://src/Managers/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/audio/SFX_Paisano_Show.ogg" type="AudioStream" id=2]
@@ -40,6 +40,13 @@
 [ext_resource path="res://assets/audio/SFX_Boat_Board.ogg" type="AudioStream" id=38]
 [ext_resource path="res://assets/audio/VO_Start.ogg" type="AudioStream" id=39]
 [ext_resource path="res://assets/audio/VO_End.ogg" type="AudioStream" id=40]
+[ext_resource path="res://assets/audio/UI_Shake_Volcano.ogg" type="AudioStream" id=41]
+[ext_resource path="res://assets/audio/UI_Show_Volcano.ogg" type="AudioStream" id=42]
+[ext_resource path="res://assets/audio/UI_Click_St.ogg" type="AudioStream" id=43]
+[ext_resource path="res://assets/audio/UI_Click_End.ogg" type="AudioStream" id=44]
+[ext_resource path="res://assets/audio/UI_Show_Dino.ogg" type="AudioStream" id=45]
+[ext_resource path="res://assets/audio/UI_Show_Paisano.ogg" type="AudioStream" id=46]
+[ext_resource path="res://assets/audio/SFX_Paisano_Dance.ogg" type="AudioStream" id=47]
 
 [node name="AudioManager" type="Node2D"]
 script = ExtResource( 1 )
@@ -127,6 +134,10 @@ stream = ExtResource( 20 )
 stream = ExtResource( 18 )
 volume_db = -4.0
 
+[node name="Dance" type="AudioStreamPlayer" parent="Paisano"]
+stream = ExtResource( 47 )
+volume_db = -4.0
+
 [node name="Volcano" type="Node2D" parent="."]
 
 [node name="Show" type="AudioStreamPlayer" parent="Volcano"]
@@ -185,6 +196,25 @@ stream = ExtResource( 31 )
 
 [node name="Button" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource( 5 )
+
+[node name="Click_End" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource( 44 )
+
+[node name="Click_St" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource( 43 )
+volume_db = -4.0
+
+[node name="Show_Dino" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource( 45 )
+
+[node name="Show_Paisano" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource( 46 )
+
+[node name="Show_Volcano" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource( 42 )
+
+[node name="Shake_Volcano" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource( 41 )
 
 [node name="Boat" type="Node2D" parent="."]
 

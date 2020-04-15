@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SFX_Dino_Rock.ogg-f33f4b8ebae173a454927c115b459b9c.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/SFX_Dino_Rock.ogg"
+dest_files=[ "res://.import/SFX_Dino_Rock.ogg-f33f4b8ebae173a454927c115b459b9c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

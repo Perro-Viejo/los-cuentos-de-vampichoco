@@ -29,6 +29,8 @@ func _process(delta):
 	
 	if shake:
 		timer += 1
+		if timer <= 1:
+			EventsManager.emit_signal('play_requested', 'UI', 'Shake_Volcano')
 		set_position(
 			pos_initial + Vector2(rand_range(-1.0, 1.0) * shake_amount, rand_range(-1.0, 1.0) * shake_amount)
 		)

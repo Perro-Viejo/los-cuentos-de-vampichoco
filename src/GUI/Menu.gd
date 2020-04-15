@@ -22,9 +22,13 @@ func _ready():
 	
 	show()
 
+func _play_request(sound):
+	EventsManager.emit_signal('play_requested', 'UI', sound)
+
 func _on_button_down():
 	if not _level_started:
 		start_level()
+		EventsManager.emit_signal('play_requested', 'UI', 'Click_St')
 	elif _level_started and _can_skip and not level_finished:
 		# Cambiar mensaje para que al siguiente clic se salte la animación
 		if not $Skip.visible:
@@ -35,6 +39,7 @@ func _on_button_down():
 	elif level_finished:
 		$Button.hide()
 		$End/Label3.hide()
+		EventsManager.emit_signal('play_requested', 'UI', 'Click_End')
 		$AnimationPlayer.play('End', -1, -3.0, true)
 		yield($AnimationPlayer, 'animation_finished')
 		get_parent().get_parent().restart()
@@ -56,7 +61,9 @@ func start_level():
 	_next_step()
 	yield(get_tree().create_timer(1.5), "timeout")
 	_next_step()
-	yield(get_tree().create_timer(2.5), "timeout")
+	yield(get_tree().create_timer(2.2), "timeout")
+	EventsManager.emit_signal('play_requested', 'UI', 'Show_Volcano')
+	yield(get_tree().create_timer(0.3), "timeout")
 	_next_step()
 	yield(get_tree().create_timer(3.7), "timeout")
 	_next_step()

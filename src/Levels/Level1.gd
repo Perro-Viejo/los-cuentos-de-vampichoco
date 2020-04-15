@@ -4,6 +4,7 @@ var inserted_cards = 0
 var slot_order = ['Empty','Empty','Empty',]
 # privates
 var _story: String = ''
+var _story_title: String = ''
 # on ready
 onready var _dflt_pos: Dictionary = {
 	a = $GUI/Control/SlotA.position,
@@ -70,23 +71,29 @@ func storyboard_complete():
 	match slot_order:
 		['Volcano','Dino','Paisano']:
 			final_num = 1
+			_story_title = '"En el mar, la vida es mas sabrosa"'
 		['Volcano','Paisano','Dino']:
 			final_num = 2
+			_story_title = '"Camaron que se duerme, se lo lleva la corriente"'
 		['Dino','Volcano','Paisano']:
 			final_num = 3
+			_story_title = '"Estadisticas muestran una alza en dinosaurios muertos por rocas ardientes"'
 		['Paisano','Volcano','Dino']:
 			final_num = 4
+			_story_title = '"Los tiempos de dios son perfectos"'
 		['Dino','Paisano','Volcano']:
 			final_num = 5
+			_story_title = '"No vives de ensalada"'
 		['Paisano','Dino','Volcano']:
 			final_num = 6
+			_story_title = '"El que no baila, no come"'
 
 	_story = 'Final_0%d' % final_num
 	
 	$EndingAnimations.play(_story)
 	yield($EndingAnimations, 'animation_finished')
 
-	_final.set_text(final_text % final_num)
+	_final.set_text(_story_title)
 	_final.show()
 	
 	if final_num != 6:
@@ -126,6 +133,7 @@ func end_level():
 	EventsManager.emit_signal('play_requested', 'VO', 'End')
 	EventsManager.emit_signal('stop_requested', 'Dino', 'Dance')
 	EventsManager.emit_signal('stop_requested', 'Volcano', 'Dance')
+	EventsManager.emit_signal('stop_requested', 'Paisano', 'Dance')
 	_final.hide()
 	$GUI/Menu.finish_level()
 

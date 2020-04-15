@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SFX_Paisano_Rock.ogg-f8af53f5b1b270bb5695af8c62bb1526.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/SFX_Paisano_Rock.ogg"
+dest_files=[ "res://.import/SFX_Paisano_Rock.ogg-f8af53f5b1b270bb5695af8c62bb1526.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
