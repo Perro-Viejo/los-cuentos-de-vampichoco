@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://src/Managers/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://assets/audio/SFX_Paisano_Show.ogg" type="AudioStream" id=2]
@@ -47,6 +47,18 @@
 [ext_resource path="res://assets/audio/UI_Show_Dino.ogg" type="AudioStream" id=45]
 [ext_resource path="res://assets/audio/UI_Show_Paisano.ogg" type="AudioStream" id=46]
 [ext_resource path="res://assets/audio/SFX_Paisano_Dance.ogg" type="AudioStream" id=47]
+[ext_resource path="res://assets/audio/SFX_Water_Boat.ogg" type="AudioStream" id=48]
+[ext_resource path="res://assets/audio/SFX_Water_Woah.ogg" type="AudioStream" id=49]
+[ext_resource path="res://assets/audio/SFX_Volcano_Fireball.ogg" type="AudioStream" id=50]
+[ext_resource path="res://assets/audio/SFX_Fireball_Fall.ogg" type="AudioStream" id=51]
+[ext_resource path="res://assets/audio/SFX_Dino_Pain_01.ogg" type="AudioStream" id=52]
+[ext_resource path="res://assets/audio/SFX_Dino_Pain_02.ogg" type="AudioStream" id=53]
+[ext_resource path="res://assets/audio/SFX_Dino_Pain_03.ogg" type="AudioStream" id=54]
+[ext_resource path="res://assets/audio/SFX_Paisano_Pain_01.ogg" type="AudioStream" id=55]
+[ext_resource path="res://assets/audio/SFX_Paisano_Pain_03.ogg" type="AudioStream" id=56]
+[ext_resource path="res://assets/audio/SFX_Paisano_Pain_02.ogg" type="AudioStream" id=57]
+[ext_resource path="res://assets/audio/SFX_Dino_Rock.ogg" type="AudioStream" id=58]
+[ext_resource path="res://assets/audio/SFX_Paisano_Rock.ogg" type="AudioStream" id=59]
 
 [node name="AudioManager" type="Node2D"]
 script = ExtResource( 1 )
@@ -90,6 +102,9 @@ stream = ExtResource( 23 )
 stream = ExtResource( 21 )
 volume_db = -2.0
 
+[node name="Rock" type="AudioStreamPlayer" parent="Dino"]
+stream = ExtResource( 58 )
+
 [node name="Scream" type="Node2D" parent="Dino"]
 script = ExtResource( 32 )
 
@@ -118,6 +133,18 @@ volume_db = -3.0
 stream = ExtResource( 19 )
 pitch_scale = 0.5
 
+[node name="Pain" type="Node2D" parent="Dino"]
+script = ExtResource( 32 )
+
+[node name="Pain_01" type="AudioStreamPlayer" parent="Dino/Pain"]
+stream = ExtResource( 52 )
+
+[node name="Pain_02" type="AudioStreamPlayer" parent="Dino/Pain"]
+stream = ExtResource( 53 )
+
+[node name="Pain_03" type="AudioStreamPlayer" parent="Dino/Pain"]
+stream = ExtResource( 54 )
+
 [node name="Paisano" type="Node2D" parent="."]
 
 [node name="Show" type="AudioStreamPlayer" parent="Paisano"]
@@ -138,6 +165,25 @@ volume_db = -4.0
 stream = ExtResource( 47 )
 volume_db = -4.0
 
+[node name="Rock" type="AudioStreamPlayer" parent="Paisano"]
+stream = ExtResource( 59 )
+
+[node name="Pain" type="Node2D" parent="Paisano"]
+script = ExtResource( 32 )
+Volume = -8.0
+
+[node name="Pain_01" type="AudioStreamPlayer" parent="Paisano/Pain"]
+stream = ExtResource( 55 )
+volume_db = -6.0
+
+[node name="Pain_02" type="AudioStreamPlayer" parent="Paisano/Pain"]
+stream = ExtResource( 57 )
+volume_db = -6.0
+
+[node name="Pain_03" type="AudioStreamPlayer" parent="Paisano/Pain"]
+stream = ExtResource( 56 )
+volume_db = -6.0
+
 [node name="Volcano" type="Node2D" parent="."]
 
 [node name="Show" type="AudioStreamPlayer" parent="Volcano"]
@@ -145,6 +191,14 @@ stream = ExtResource( 4 )
 
 [node name="Explode" type="AudioStreamPlayer" parent="Volcano"]
 stream = ExtResource( 10 )
+
+[node name="Fireball" type="AudioStreamPlayer" parent="Volcano"]
+stream = ExtResource( 50 )
+volume_db = -4.0
+
+[node name="Fall" type="AudioStreamPlayer" parent="Volcano"]
+stream = ExtResource( 51 )
+volume_db = -4.0
 
 [node name="Dance" type="AudioStreamPlayer" parent="Volcano"]
 stream = ExtResource( 9 )
@@ -197,6 +251,10 @@ stream = ExtResource( 31 )
 [node name="Button" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource( 5 )
 
+[node name="Show_Water" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource( 48 )
+volume_db = -7.0
+
 [node name="Click_End" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource( 44 )
 
@@ -215,6 +273,12 @@ stream = ExtResource( 42 )
 
 [node name="Shake_Volcano" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource( 41 )
+
+[node name="Water" type="Node2D" parent="."]
+
+[node name="Woah" type="AudioStreamPlayer2D" parent="Water"]
+position = Vector2( 1329.94, 484.313 )
+stream = ExtResource( 49 )
 
 [node name="Boat" type="Node2D" parent="."]
 

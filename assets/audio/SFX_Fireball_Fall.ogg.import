@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SFX_Fireball_Fall.ogg-37fbf0a04dbe76d452f369cf8f2f524e.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/SFX_Fireball_Fall.ogg"
+dest_files=[ "res://.import/SFX_Fireball_Fall.ogg-37fbf0a04dbe76d452f369cf8f2f524e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

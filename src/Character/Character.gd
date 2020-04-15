@@ -76,6 +76,7 @@ func play_anim(id: String) -> void:
 				'Eat':
 					dino.position.y = dino_dflt_y - 32
 					EventsManager.emit_signal('play_requested', 'Dino', 'Eat')
+					EventsManager.emit_signal('stop_requested', 'Paisano', 'Dance')
 				'Run':
 					EventsManager.emit_signal('play_requested', 'Dino', 'Scream')
 				'Drown':
@@ -89,6 +90,7 @@ func play_anim(id: String) -> void:
 					_burn(node.position)
 					EventsManager.emit_signal('stop_requested', 'Dino', 'Sleep')
 					EventsManager.emit_signal('play_requested', 'Dino', 'Scream')
+					EventsManager.emit_signal('play_requested', 'Dino', 'Rock')
 					EventsManager.emit_signal('play_requested', 'Dino', 'Burn')
 					node.hide()
 					return
@@ -168,8 +170,12 @@ func _on_animation_finished(src: String) -> void:
 					paisano.play('ClimbLoop')
 				'ClimbLoop':
 					_despair_count += 1
+					if randi()%100 <= 40:
+						randomize()
+						EventsManager.emit_signal('play_requested', 'Paisano', 'Pain')
 					if _despair_count == despair_to_die:
 						_despair_count = 0
+						EventsManager.emit_signal('play_requested', 'Paisano', 'Pain')
 
 						paisano.stop()
 						paisano.hide()
@@ -199,5 +205,5 @@ func _burn(position: Vector2) -> void:
 	$Fire.position = position
 	
 	$Fire.show()
-	EventsManager.emit_signal('play_requested', 'Paisano', 'Burn')
 	$Fire.play('Burn')
+	EventsManager.emit_signal('play_requested', 'Paisano', 'Burn')

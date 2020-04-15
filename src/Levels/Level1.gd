@@ -102,7 +102,7 @@ func storyboard_complete():
 		end_level()
 
 func restart():
-	yield(get_tree().create_timer(5.0), 'timeout')
+	yield(get_tree().create_timer(7.0), 'timeout')
 
 	$GUI.get_node("Control").restart()
 
@@ -159,6 +159,7 @@ func _get_character(letter: String) -> Node2D:
 
 func spit_lava(src: String) -> void:
 	var character: Node2D = _get_character(src)
+	EventsManager.emit_signal('play_requested', 'Volcano', 'Fireball')
 
 	for lava in lavas.get_children():
 		lava.global_position = character.global_position
@@ -214,7 +215,8 @@ func fall_lava(targetA: String, targetB: String, wait: float = 0.0) -> void:
 			Tween.EASE_IN
 		)
 		$Tween.start()
-		# AUDIO: Aquí se puede reproducir en SFX de las bolas cayendo
+		yield(get_tree().create_timer(0.4), 'timeout')
+		EventsManager.emit_signal('play_requested', 'Volcano', 'Fall')
 
 		yield(get_tree().create_timer(wait), 'timeout')
 

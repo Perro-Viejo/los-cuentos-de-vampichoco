@@ -22,7 +22,7 @@
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 9 )
-region = Rect2( 0, 0, 130, 130 )
+region = Rect2( 130, 0, 130, 130 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -32,34 +32,34 @@ region = Rect2( 130, 0, 130, 130 )
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 9 )
-region = Rect2( 130, 0, 130, 130 )
+region = Rect2( 260, 0, 130, 130 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 9 )
-region = Rect2( 260, 0, 130, 130 )
+region = Rect2( 390, 0, 130, 130 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 9 )
-region = Rect2( 390, 0, 130, 130 )
+region = Rect2( 0, 0, 130, 130 )
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ SubResource( 1 ) ],
 "loop": false,
-"name": "Stay",
-"speed": 1.0
-}, {
-"frames": [ SubResource( 2 ) ],
-"loop": false,
 "name": "Board",
 "speed": 1.0
 }, {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 3 ), SubResource( 5 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 2 ), SubResource( 4 ) ],
 "loop": true,
 "name": "Leave",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 5 ) ],
+"loop": false,
+"name": "Stay",
+"speed": 1.0
 } ]
 
 [sub_resource type="AtlasTexture" id=7]
@@ -1226,6 +1226,20 @@ tracks/13/keys = {
 "update": 0,
 "values": [ Vector2( -184, -13 ) ]
 }
+tracks/14/type = "method"
+tracks/14/path = NodePath("AudioManager")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Water", "Woah" ],
+"method": "play_sound"
+} ]
+}
 
 [sub_resource type="Animation" id=34]
 length = 18.0
@@ -1435,6 +1449,20 @@ tracks/15/keys = {
 "update": 0,
 "values": [ Vector2( -468, -13 ) ]
 }
+tracks/16/type = "method"
+tracks/16/path = NodePath("AudioManager")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Water", "Woah" ],
+"method": "play_sound"
+} ]
+}
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 3 )
@@ -1460,7 +1488,6 @@ texture = ExtResource( 5 )
 
 [node name="level_01-bg" type="Sprite" parent="frame"]
 position = Vector2( -42, 0 )
-z_index = 1
 texture = ExtResource( 6 )
 
 [node name="Boat" type="AnimatedSprite" parent="frame"]
@@ -1480,6 +1507,7 @@ visible = false
 light_mask = 2
 material = ExtResource( 12 )
 frames = SubResource( 10 )
+frame = 1
 playing = true
 
 [node name="02" type="AnimatedSprite" parent="frame/Lavas"]
@@ -1487,6 +1515,7 @@ visible = false
 light_mask = 2
 material = ExtResource( 12 )
 frames = SubResource( 10 )
+frame = 1
 playing = true
 
 [node name="Impacts" type="Node2D" parent="frame"]
@@ -1518,7 +1547,6 @@ light_mask = 2
 material = ExtResource( 12 )
 position = Vector2( 438, 120 )
 frames = SubResource( 19 )
-frame = 1
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="frame/Water"]
@@ -1527,7 +1555,7 @@ anims/Start = SubResource( 21 )
 
 [node name="Palms" type="AnimatedSprite" parent="frame"]
 visible = false
-position = Vector2( -468, -13 )
+position = Vector2( -184, -13 )
 frames = SubResource( 26 )
 frame = 3
 playing = true
@@ -1538,6 +1566,7 @@ z_index = 2
 
 [node name="CharacterB" parent="." instance=ExtResource( 1 )]
 position = Vector2( 776, 432 )
+z_index = 2
 
 [node name="CharacterC" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1060, 432 )

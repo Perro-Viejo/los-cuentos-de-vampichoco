@@ -55,6 +55,8 @@ func start_level():
 	_next_step()
 	yield(get_tree().create_timer(2.8), "timeout")
 	_next_step()
+	if not _skipped: 
+		EventsManager.emit_signal('play_requested', 'UI', 'Show_Water')
 	yield(get_tree().create_timer(1.2), "timeout")
 	_next_step()
 	yield(get_tree().create_timer(5.3), "timeout")
@@ -62,7 +64,8 @@ func start_level():
 	yield(get_tree().create_timer(1.5), "timeout")
 	_next_step()
 	yield(get_tree().create_timer(2.2), "timeout")
-	EventsManager.emit_signal('play_requested', 'UI', 'Show_Volcano')
+	if not _skipped: 
+		EventsManager.emit_signal('play_requested', 'UI', 'Show_Volcano')
 	yield(get_tree().create_timer(0.3), "timeout")
 	_next_step()
 	yield(get_tree().create_timer(3.7), "timeout")

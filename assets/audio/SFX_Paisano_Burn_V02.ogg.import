@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SFX_Paisano_Burn_V02.ogg-16d64fe00350185250dc1a1b66920f62.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/SFX_Paisano_Burn_V02.ogg"
+dest_files=[ "res://.import/SFX_Paisano_Burn_V02.ogg-16d64fe00350185250dc1a1b66920f62.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
